@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   images: {
-    domains: ["i.ibb.co"],
+    domains: ["i.ibb.co", "assets.aceternity.com"],
   },
 };
 
