@@ -1,3 +1,4 @@
+import { Testimonial } from "@/components/ui/animated-testimonials";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -5,7 +6,6 @@ import {
   IconBrandYoutube,
   IconMail,
   IconGlobe,
-  IconCode,
 } from "@tabler/icons-react";
 
 export const DATA = {
@@ -14,7 +14,8 @@ export const DATA = {
   url: "https://saifmohamedsv.vercel.app",
   location: "Alexandria, Egypt",
   locationLink: "https://www.google.com/maps/place/Alexandria",
-  description: "Software Engineer & Mentor. I love building things and helping people. Very active on LinkedIn.",
+  description:
+    "Software Engineer & Mentor. I love building things and helping people. Very active on LinkedIn.",
   summary:
     "I'm a software engineer with a passion for building things and helping people. I'm very active on LinkedIn.",
   avatarUrl: "/me.jpeg",
@@ -35,7 +36,6 @@ export const DATA = {
     "Python",
   ],
   navbar: [
-    { href: "/projects", icon: IconCode, title: "Projects" },
     {
       title: "GitHub",
       href: "https://github.com/saifmohamedsv",
@@ -174,7 +174,8 @@ export const DATA = {
       school: "EL Zahraa Language School",
       href: "#",
       degree: "Primary - Preparatory - Secondary",
-      logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScOZw9kRrdOdwmkXz_0_ghf12AvU01IXlfUw&s",
+      logoUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScOZw9kRrdOdwmkXz_0_ghf12AvU01IXlfUw&s",
       start: "2006",
       end: "2020",
     },
@@ -182,7 +183,8 @@ export const DATA = {
       school: "HIMIT",
       href: "#",
       degree: "Bachelor's Degree of Computer Science ( 3.2 GPA )",
-      logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXcbE0gLERwHeKF-nwASZiIYQo4IL7zrKvlg&s",
+      logoUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXcbE0gLERwHeKF-nwASZiIYQo4IL7zrKvlg&s",
       start: "2021",
       end: "2024",
     },
@@ -195,7 +197,15 @@ export const DATA = {
       active: true,
       description:
         "Implemented NestJS APIs in NextJS apps. Created new components using chakra-ui & tailwindCSS. Re-designed number of modules from Figma UI/UX designs.",
-      technologies: ["Next.js", "Typescript", "NestJS", "PostgreSQL", "Docker", "TailwindCSS", "Chakra-ui"],
+      technologies: [
+        "Next.js",
+        "Typescript",
+        "NestJS",
+        "PostgreSQL",
+        "Docker",
+        "TailwindCSS",
+        "Chakra-ui",
+      ],
       links: [
         {
           type: "Website",
@@ -211,7 +221,8 @@ export const DATA = {
       href: "https://saifmohamedsv.vercel.app",
       dates: "2025",
       active: true,
-      description: "A website that showcases my projects, skills, experience and blog.",
+      description:
+        "A website that showcases my projects, skills, experience and blog.",
       technologies: ["Next.js", "Typescript", "TailwindCSS"],
       links: [
         {
@@ -230,7 +241,14 @@ export const DATA = {
       active: true,
       description:
         "Toast System is a library designed to streamline state management and common functionality in React applications. It eliminates repetitive boilerplate, allowing developers to focus on building intuitive, scalable UIs.",
-      technologies: ["React", "Hooks", "State Management", "npm", "Custom Hooks", "TailwindCSS"],
+      technologies: [
+        "React",
+        "Hooks",
+        "State Management",
+        "npm",
+        "Custom Hooks",
+        "TailwindCSS",
+      ],
       links: [
         {
           type: "Website",
@@ -248,7 +266,13 @@ export const DATA = {
       active: true,
       description:
         "use-any-hook is a library designed to streamline state management and common functionality in React applications. It eliminates repetitive boilerplate, allowing developers to focus on building intuitive, scalable UIs.",
-      technologies: ["React", "Hooks", "State Management", "npm", "Custom Hooks"],
+      technologies: [
+        "React",
+        "Hooks",
+        "State Management",
+        "npm",
+        "Custom Hooks",
+      ],
       links: [
         {
           type: "Website",
@@ -264,8 +288,15 @@ export const DATA = {
       href: "https://gold-profit.vercel.app/",
       dates: "2025",
       active: true,
-      description: "Gold is a website that allows you to track gold prices and calculate gold profit.",
-      technologies: ["Next.js", "Typescript", "TailwindCSS", "DaisyUI", "goldAPI.io"],
+      description:
+        "Gold is a website that allows you to track gold prices and calculate gold profit.",
+      technologies: [
+        "Next.js",
+        "Typescript",
+        "TailwindCSS",
+        "DaisyUI",
+        "goldAPI.io",
+      ],
       links: [
         {
           type: "Website",
@@ -283,7 +314,13 @@ export const DATA = {
       active: true,
       description:
         "Dulist is a task management application designed to streamline productivity. With Dulist, users can efficiently manage their tasks and deadlines using an intuitive interface. It leverages powerful tools and frameworks to provide a responsive and robust experience.",
-      technologies: ["Next.js", "Typescript", "Material UI", "Vite.js", "Redux"],
+      technologies: [
+        "Next.js",
+        "Typescript",
+        "Material UI",
+        "Vite.js",
+        "Redux",
+      ],
       links: [
         {
           type: "Website",
@@ -304,7 +341,8 @@ export const DATA = {
       href: "https://spin-the-ball.vercel.app/",
       dates: "",
       active: true,
-      description: "Ball Spin is a game that allows you to spin a ball in a three dimensional space.",
+      description:
+        "Ball Spin is a game that allows you to spin a ball in a three dimensional space.",
       technologies: ["React.js", "TailwindCSS", "Three.js"],
       links: [
         {
@@ -321,7 +359,8 @@ export const DATA = {
       href: "https://chatty-pink.vercel.app/",
       dates: "",
       active: true,
-      description: "Chatty is a chat application that allows you to chat with your friends.",
+      description:
+        "Chatty is a chat application that allows you to chat with your friends.",
       technologies: ["React.js", "CSS", "Socket.io"],
       links: [
         {
@@ -334,4 +373,62 @@ export const DATA = {
       video: "",
     },
   ],
+  testimonials: [
+    {
+      quote:
+        "Saif is one of the most professional, elegant, and super motivated software engineers I've worked with. besides his passion for design and new technologies, his personal and communication skills are amazing.",
+      name: "Abdelrahman Fekri",
+      designation: "Senior Software Engineer at Dyne",
+      src: "https://plus.unsplash.com/premium_photo-1711044006683-a9c3bbcf2f15?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
+    },
+    {
+      quote:
+        "Saif is one of the most professional, elegant, and super motivated software engineers I've worked with. besides his passion for design and new technologies, his personal and communication skills are amazing.",
+      name: "Hossam Gamal",
+      designation: "Senior Frontend Developer at 1GLOBAL",
+      src: "https://plus.unsplash.com/premium_photo-1739178656537-ea88ababab9b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
+    },
+    {
+      quote:
+        "I had the pleasure of working with Saif, and his talent and dedication as a software engineer are truly remarkable. His ability to tackle complex problems with innovative solutions made a significant impact on our AI automation tasks.",
+      name: "Kishan Parmar",
+      designation: "Community Engineer at Activepieces",
+      src: "https://plus.unsplash.com/premium_photo-1739178656495-8109a8bc4f53?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
+    },
+    {
+      quote:
+        "Saif is a very hard working talented software engineer whom I was glad to be a colleague of, he has a very bright future ahead I am sure of it.",
+      name: "Abdel-rahman Al-hussein",
+      designation: "Software Engineer at Activepieces",
+      src: "https://plus.unsplash.com/premium_photo-1739178656567-068b26a4b979?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
+    },
+    {
+      quote:
+        "Saif excels at writing clean and organized code, adding cool features, and keeping up to date with modern technologies.",
+      name: "Mahmoud Adel",
+      designation: "Frontend Developer at Qabilah",
+      src: "https://plus.unsplash.com/premium_photo-1739538269098-5920918f31a4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
+    },
+    {
+      quote:
+        "Saif is an excellent experienced frontend developer proficient at solving problems and searching. I highly recommend him to join any professional team.",
+      name: "Dina Elorbany",
+      designation: "Frontend Developer at Derayah Financial",
+      src: "https://plus.unsplash.com/premium_photo-1739178656537-ea88ababab9b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
+    },
+    {
+      quote:
+        "Saif is really hard-working and motivated person he loves his work and getting better everyday",
+      name: "karim Alaskary",
+      designation: "Frontend Intern",
+      src: "https://plus.unsplash.com/premium_photo-1739632608992-669510ba6b9e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
+    },
+    {
+      quote:
+        "Such a professional & dedicated person, comes before this he is a helpful person that will be an addition to any workspace.",
+      name: "Ahmed Medhat",
+      designation: "Software Engineer at",
+      src: "https://plus.unsplash.com/premium_photo-1739376473691-cdc1db244ac6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
+    },
+  ] as Testimonial[],
 } as const;
