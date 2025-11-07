@@ -11,6 +11,8 @@ export default function Home() {
       <Experience />
       {/* Testimonials */}
       <Testimonials />
+
+      {/* Contact */}
     </div>
   );
 }
