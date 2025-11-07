@@ -1,5 +1,6 @@
 import { Experience } from "@/components/experience";
 import { Hero } from "@/components/hero";
+import { Testimonials } from "@/components/testimonials";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
       {/* Experience */}
       <Experience />
       {/* Testimonials */}
-      
+      <Testimonials />
     </div>
   );
 }

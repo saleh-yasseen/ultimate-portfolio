@@ -4,6 +4,7 @@ import "./globals.css";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import { Dock } from "@/components/dock";
+import { Navigation } from "@/components/navbar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -53,8 +54,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn("min-h-screen bg-background font-sans antialiased mx-auto px-6", fontSans.variable)}
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased mx-auto px-6",
+          fontSans.variable
+        )}
       >
+        <Navigation />
         {children}
         <Dock />
       </body>
