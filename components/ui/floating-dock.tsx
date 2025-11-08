@@ -49,30 +49,25 @@ const FloatingDockMobile = ({
   const [visible, setVisible] = useState<boolean>(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
+    setVisible(latest > 100);
   });
 
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
+        backdropFilter: visible ? "blur(8px)" : "none",
+        boxShadow: visible ? "0 0 16px rgba(34, 42, 53, 0.08)" : "none",
       }}
       transition={{
         type: "spring",
         stiffness: 200,
-        damping: 50,
+        damping: 40,
       }}
       className={cn(
-        "relative hidden rounded-full p-2 bg-transparent",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
-        !visible && "bg-gray-50 dark:bg-neutral-800",
+        "fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full z-50 md:hidden",
+        visible
+          ? "bg-white/70 dark:bg-neutral-950/70 backdrop-blur-md"
+          : "bg-gray-50/90 dark:bg-neutral-900/90",
         className
       )}
     >
@@ -80,54 +75,37 @@ const FloatingDockMobile = ({
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute inset-x-0 bottom-full mb-2 flex flex-col gap-2"
+            className="absolute bottom-full mb-2 flex flex-col gap-1"
           >
             {items.map((item, idx) => (
-              <motion.div
+              <motion.a
+                href={item.href}
                 key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 6 }}
+                transition={{ delay: idx * 0.03 }}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
               >
-                <a
-                  href={item.href}
-                  key={item.title}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
-                >
-                  <div className="h-5 w-5">
-                    <item.icon className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-                  </div>
-                </a>
-              </motion.div>
+                <item.icon className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
+              </motion.a>
             ))}
+
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{
-                opacity: 0,
-                y: 10,
-                transition: { delay: items.length * 0.05 },
-              }}
-              transition={{ delay: items.length * 0.05 }}
+              exit={{ opacity: 0, y: 6 }}
+              transition={{ delay: items.length * 0.03 }}
             >
               <ThemeToggleMobile />
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
       <button
         onClick={() => setOpen(!open)}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-transparent"
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-transparent"
       >
         <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
       </button>
@@ -170,7 +148,7 @@ const FloatingDockDesktop = ({
         damping: 50,
       }}
       className={cn(
-        "mx-auto h-16 items-end w-fit gap-4 rounded-2xl px-4 py-3 flex bg-transparent",
+        "mx-auto h-16 items-end w-fit gap-4 rounded-2xl px-4 py-3 hidden md:flex bg-transparent",
         visible && "bg-white/80 dark:bg-neutral-950/80",
         !visible && "bg-gray-50 dark:bg-neutral-900",
         className
