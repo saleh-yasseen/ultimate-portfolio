@@ -63,14 +63,14 @@ export const DATA = {
     social: {
       GitHub: {
         name: "GitHub",
-        href: "https://github.com/saifmohamedsv",
+        url: "https://github.com/saifmohamedsv",
         icon: IconBrandGithub,
+        navbar: true,
       },
       LinkedIn: {
         name: "LinkedIn",
         url: "https://www.linkedin.com/in/saifmohamedsv/",
         icon: IconBrandLinkedin,
-
         navbar: true,
       },
       X: {
