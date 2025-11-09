@@ -8,8 +8,11 @@ export default function ContactSection() {
   const contact = DATA.contact;
 
   return (
-    <section id="contact" className="relative py-24">
-      <BackgroundBeamsWithCollision>
+    <section
+      id="contact"
+      className="relative flex items-stretch justify-stretch"
+    >
+      <BackgroundBeamsWithCollision className="min-h-screen py-24">
         <div className="relative z-20 flex flex-col items-center justify-center text-center px-4">
           <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white font-sans tracking-tight mb-6">
             <span className="bg-linear-to-r from-purple-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
