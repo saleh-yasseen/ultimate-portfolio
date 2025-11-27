@@ -15,7 +15,7 @@ const fontSans = FontSans({
 const rawBaseUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? DATA.url ?? "https://example.com";
 const canonicalBaseUrl = rawBaseUrl.replace(/\/$/, "");
-const previewImagePath = "/logo.png";
+const previewImagePath = "/me.png";
 const previewImageUrl = new URL(previewImagePath, canonicalBaseUrl).toString();
 const twitterHandle = "@saifmohamed_swe";
 
