@@ -3,6 +3,11 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 import React, { useRef, useState, useEffect } from "react";
 
+const deterministicRandom = (seed: number) => {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+};
+
 export const BackgroundBeamsWithCollision = ({
   children,
   className,
@@ -224,15 +229,19 @@ const CollisionMechanism = React.forwardRef<
 CollisionMechanism.displayName = "CollisionMechanism";
 
 const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
-  const spans = Array.from({ length: 20 }, (_, index) => ({
-    id: index,
-    initialX: 0,
-    initialY: 0,
-    // eslint-disable-next-line react-hooks/purity
-    directionX: Math.floor(Math.random() * 80 - 40),
-    // eslint-disable-next-line react-hooks/purity
-    directionY: Math.floor(Math.random() * -50 - 10),
-  }));
+  const spans = Array.from({ length: 20 }, (_, index) => {
+    const directionX = Math.floor(deterministicRandom(index + 1) * 80 - 40);
+    const directionY = Math.floor(deterministicRandom(index + 101) * -50 - 10);
+    const duration = deterministicRandom(index + 201) * 1.5 + 0.5;
+    return {
+      id: index,
+      initialX: 0,
+      initialY: 0,
+      directionX,
+      directionY,
+      duration,
+    };
+  });
 
   return (
     <div {...props} className={cn("absolute z-50 h-2 w-2", props.className)}>
@@ -252,8 +261,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
             y: span.directionY,
             opacity: 0,
           }}
-          // eslint-disable-next-line react-hooks/purity
-          transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
+          transition={{ duration: span.duration, ease: "easeOut" }}
           className="absolute h-1 w-1 rounded-full bg-linear-to-b from-indigo-500 to-purple-500"
         />
       ))}
