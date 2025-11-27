@@ -32,17 +32,13 @@ export function Navigation() {
 
   return (
     <div className="relative w-full">
-      <Navbar className="fixed top-0 z-99">
+      <Navbar className="fixed top-2 z-99">
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="primary"
-              className="w-full"
-            >
+            <NavbarButton variant="secondary" className="w-full">
               Book a call
             </NavbarButton>
           </div>
