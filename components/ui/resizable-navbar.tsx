@@ -236,12 +236,12 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center text-sm font-normal text-black bg-transparent"
     >
-      <div className="flex md:h-12 md:w-12 h-8 w-8 items-center justify-center rounded-2xl overflow-hidden bg-transparent">
+      <div className="flex h-6 w-6 items-center justify-center">
         <Image
-          src="/logo.svg"
+          src={"/logo.png"}
           alt="logo"
-          width={64}
-          height={64}
+          width={120}
+          height={120}
           className="h-full w-full object-contain"
         />
       </div>
