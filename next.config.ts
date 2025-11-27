@@ -4,7 +4,10 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   images: {
-    domains: ["i.ibb.co", "assets.aceternity.com"],
+    remotePatterns: [
+      { hostname: "assets.aceternity.com", protocol: "https" },
+      { hostname: "i.ibb.co", protocol: "https" },
+    ],
   },
 };
 
