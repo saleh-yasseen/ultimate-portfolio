@@ -238,7 +238,7 @@ export const NavbarLogo = () => {
     >
       <div className="flex h-6 w-6 items-center justify-center">
         <Image
-          src={"/logo.png"}
+          src={"/logo-bg.png"}
           alt="logo"
           width={120}
           height={120}
