@@ -234,18 +234,20 @@ export const NavbarLogo = () => {
   return (
     <a
       href="#"
-      className="relative z-20 mr-4 flex items-center text-sm font-normal text-black"
+      className="relative z-20 mr-4 flex items-center text-sm font-normal text-black bg-transparent"
     >
-      <div className="flex md:h-12 md:w-12 h-10 w-10 items-center justify-center">
+      <div className="flex md:h-12 md:w-12 h-8 w-8 items-center justify-center rounded-2xl overflow-hidden bg-transparent">
         <Image
           src="/logo.png"
           alt="logo"
           width={64}
           height={64}
-          className="object-cover"
+          className="h-full w-full object-contain"
         />
       </div>
-      <span className="font-black text-black dark:text-white">SWEverse</span>
+      <span className="ms-2 font-black text-black dark:text-white">
+        SWEverse
+      </span>
     </a>
   );
 };
