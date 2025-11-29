@@ -47,11 +47,21 @@ export function ProjectsPreview() {
                   sizes="(min-width: 1024px) 320px, 100vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-                {project.active && (
+                <div className="absolute left-3 top-3 inline-flex items-center gap-2 rounded-full bg-black/70 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur">
+                  <span
+                    className={
+                      project.active
+                        ? "h-1.5 w-1.5 rounded-full bg-emerald-400"
+                        : "h-1.5 w-1.5 rounded-full bg-neutral-400"
+                    }
+                  />
+                  <span>{project.active ? "Live" : "Archived"}</span>
+                </div>
+                {/* {project.active && (
                   <span className="absolute left-3 top-3 rounded-full bg-primary/80 px-2.5 py-1 text-xs font-medium text-white shadow-sm">
                     Live
                   </span>
-                )}
+                )} */}
                 {project.dates && (
                   <span className="absolute right-3 bottom-3 rounded-full bg-black/70 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur">
                     {project.dates}
