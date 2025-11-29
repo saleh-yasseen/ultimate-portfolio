@@ -10,10 +10,17 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { DATA } from "@/data/resume";
+import Link from "next/link";
 import { useState } from "react";
+import { ButtonConnect } from "./shared/button-connect";
 
 export function Navigation() {
   const navItems = [
+    {
+      name: "Projects",
+      link: "#projects",
+    },
     {
       name: "Work Experience",
       link: "#experience",
@@ -32,15 +39,17 @@ export function Navigation() {
 
   return (
     <div className="relative w-full">
-      <Navbar className="fixed top-2 z-99">
+      <Navbar className="fixed top-0 md:top-2 z-99">
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary" className="w-full">
-              Book a call
-            </NavbarButton>
+            <ButtonConnect className="w-full">
+              <Link href={DATA.nzmly} target="_blank">
+                Book a call
+              </Link>
+            </ButtonConnect>
           </div>
         </NavBody>
 
@@ -69,13 +78,11 @@ export function Navigation() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Book a call
-              </NavbarButton>
+              <ButtonConnect className="w-full">
+                <Link href={DATA.nzmly} target="_blank">
+                  Book a call
+                </Link>
+              </ButtonConnect>
             </div>
           </MobileNavMenu>
         </MobileNav>
