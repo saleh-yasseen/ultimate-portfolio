@@ -12,6 +12,7 @@ export const DATA = {
   name: "Saif Mohamed",
   initials: "SM",
   url: "https://saifmohamedsv.vercel.app",
+  nzmly: "https://saif-mohamed.nzmly.com/",
   location: "Alexandria, Egypt",
   locationLink: "https://www.google.com/maps/place/Alexandria",
   description:
