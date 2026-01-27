@@ -1,11 +1,16 @@
-import { DATA } from "@/data/resume";
+import type { ResumeData } from "@/lib/resume-data";
 import { ButtonConnect } from "@/components/shared/button-connect";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { Icon } from "@/components/ui/icon";
 import Image from "next/image";
 import Link from "next/link";
 
-export function ProjectsPreview() {
-  const projects = DATA.projects.slice(0, 3);
+interface ProjectsPreviewProps {
+  data: ResumeData;
+}
+
+export function ProjectsPreview({ data }: ProjectsPreviewProps) {
+  const projects = data.projects.slice(0, 3);
 
   return (
     <section
@@ -79,7 +84,7 @@ export function ProjectsPreview() {
                       {project.links?.length ? (
                         <div className="mt-2 flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm text-neutral-700 dark:text-neutral-300">
                           <div className="flex flex-wrap gap-2">
-                            {project.links.map((link) => (
+                            {project.links.map((link) => (  
                               <Link
                                 key={`${project.title}-${link.type}`}
                                 href={link.href}
@@ -87,9 +92,7 @@ export function ProjectsPreview() {
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/70 bg-white/80 px-3 py-1 text-[11px] font-medium text-neutral-800 hover:border-primary/60 hover:text-primary dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-200"
                               >
-                                <span className="inline-flex items-center justify-center">
-                                  {link.icon}
-                                </span>
+                                <Icon name={link.icon} className="w-3 h-3" />
                                 <span>{link.type}</span>
                               </Link>
                             ))}
@@ -102,9 +105,7 @@ export function ProjectsPreview() {
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/80 bg-neutral-900 px-3 py-1 text-[11px] font-medium text-white hover:bg-primary hover:border-primary/70 dark:bg-white dark:text-neutral-900 dark:hover:bg-primary dark:hover:text-white"
                             >
-                              <span className="inline-flex items-center justify-center">
-                                {repoLink.icon}
-                              </span>
+                              <Icon name={repoLink.icon} className="w-3 h-3" />
                               <span>GitHub repo</span>
                             </Link>
                           )}

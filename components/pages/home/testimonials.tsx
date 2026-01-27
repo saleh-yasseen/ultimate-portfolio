@@ -1,10 +1,14 @@
 "use client";
 
-import { DATA } from "@/data/resume";
+import type { ResumeData } from "@/lib/resume-data";
 import { TextGenerateEffect } from "../../ui/text-generate-effect";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
-export function Testimonials() {
+interface TestimonialsProps {
+  data: ResumeData;
+}
+
+export function Testimonials({ data }: TestimonialsProps) {
   return (
     <div
       id="testimonials"
@@ -22,7 +26,7 @@ export function Testimonials() {
           />
         </div>
         <InfiniteMovingCards
-          items={DATA.testimonials.map((testimonial) => ({
+          items={data.testimonials.map((testimonial) => ({
             ...testimonial,
             quote: testimonial.quote,
             name: testimonial.name,

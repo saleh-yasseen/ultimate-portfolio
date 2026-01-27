@@ -1,11 +1,7 @@
 import type { MetadataRoute } from "next";
-import { DATA } from "@/data/resume";
+import { getResumeData } from "@/lib/resume-data";
 
-const canonicalBaseUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  DATA.url ??
-  "https://example.com"
-).replace(/\/$/, "");
+export const dynamic = "force-dynamic";
 
 const staticRoutes: Array<{
   path: string;
@@ -19,7 +15,13 @@ const staticRoutes: Array<{
   },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const DATA = await getResumeData();
+  const canonicalBaseUrl = (
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    DATA.url ??
+    "https://example.com"
+  ).replace(/\/$/, "");
   const lastModified = new Date();
 
   const primaryRoutes = staticRoutes.map((route) => ({

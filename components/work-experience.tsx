@@ -3,10 +3,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { DATA } from "@/data/resume"; // adjust to your path
+import type { ResumeData } from "@/lib/resume-data";
 import { IconCheck } from "@tabler/icons-react";
-export default function WorkExperience() {
-  const work = DATA.work;
+
+interface WorkExperienceProps {
+  data: ResumeData;
+}
+
+export default function WorkExperience({ data }: WorkExperienceProps) {
+  const work = data.work;
 
   // default: first job
   const [active, setActive] = useState<string>(work[0].company);

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import { DATA } from "@/data/resume";
+import { getResumeData } from "@/lib/resume-data";
 import { cn } from "@/lib/utils";
 import { Dock } from "@/components/dock";
 import { Navigation } from "@/components/navbar";
@@ -12,66 +12,75 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
-const rawBaseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? DATA.url ?? "https://example.com";
-const canonicalBaseUrl = rawBaseUrl.replace(/\/$/, "");
-const previewImagePath = "/me.png";
-const previewImageUrl = new URL(previewImagePath, canonicalBaseUrl).toString();
-const twitterHandle = "@saifmohamed_swe";
+export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(canonicalBaseUrl),
-  applicationName: DATA.name,
-  title: {
-    default: DATA.name,
-    template: `%s | ${DATA.name}`,
-  },
-  description: DATA.description,
-  openGraph: {
-    title: `${DATA.name}`,
+export async function generateMetadata(): Promise<Metadata> {
+  const DATA = await getResumeData();
+
+  const rawBaseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? DATA.url ?? "https://example.com";
+  const canonicalBaseUrl = rawBaseUrl.replace(/\/$/, "");
+  const previewImagePath = "/me.png";
+  const previewImageUrl = new URL(previewImagePath, canonicalBaseUrl).toString();
+  const twitterHandle = "@saifmohamed_swe";
+
+  return {
+    metadataBase: new URL(canonicalBaseUrl),
+    applicationName: DATA.name,
+    title: {
+      default: DATA.name,
+      template: `%s | ${DATA.name}`,
+    },
     description: DATA.description,
-    url: canonicalBaseUrl,
-    siteName: `${DATA.name}`,
-    locale: "en_EG",
-    type: "website",
-    images: [
-      {
-        url: previewImageUrl,
-        width: 1200,
-        height: 630,
-        alt: `${DATA.name} personal site preview`,
-      },
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    openGraph: {
+      title: `${DATA.name}`,
+      description: DATA.description,
+      url: canonicalBaseUrl,
+      siteName: `${DATA.name}`,
+      locale: "en_EG",
+      type: "website",
+      images: [
+        {
+          url: previewImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${DATA.name} personal site preview`,
+        },
+      ],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  twitter: {
-    title: `${DATA.name}`,
-    description: DATA.description,
-    card: "summary_large_image",
-    images: [previewImageUrl],
-    creator: twitterHandle,
-    site: twitterHandle,
-  },
-  verification: {
-    google: "",
-    yandex: "",
-  },
-};
-export default function RootLayout({
+    twitter: {
+      title: `${DATA.name}`,
+      description: DATA.description,
+      card: "summary_large_image",
+      images: [previewImageUrl],
+      creator: twitterHandle,
+      site: twitterHandle,
+    },
+    verification: {
+      google: "",
+      yandex: "",
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const data = await getResumeData();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -81,9 +90,9 @@ export default function RootLayout({
         )}
       >
         <ThemeInit />
-        <Navigation />
+        <Navigation data={data} />
         {children}
-        <Dock />
+        <Dock data={data} />
       </body>
     </html>
   );

@@ -1,11 +1,16 @@
 "use client";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { DATA } from "@/data/resume"; // adjust the path if needed
+import type { ResumeData } from "@/lib/resume-data";
+import { Icon } from "@/components/ui/icon";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function ContactSection() {
-  const contact = DATA.contact;
+interface ContactSectionProps {
+  data: ResumeData;
+}
+
+export default function ContactSection({ data }: ContactSectionProps) {
+  const contact = data.contact;
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -29,9 +34,7 @@ export default function ContactSection() {
       <div className="flex flex-wrap justify-center gap-6 mb-8">
         {Object.values(contact.social)
           .filter((item) => !item.navbar)
-          .map((item) => {
-            const Icon = item.icon;
-            return (
+          .map((item) => (
               <Link
                 key={item.name}
                 href={item.url}
@@ -45,11 +48,10 @@ export default function ContactSection() {
                       hover:bg-neutral-900 hover:text-white transition-all backdrop-blur-sm
                 `}
               >
-                <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <Icon name={item.icon} className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{item.name}</span>
               </Link>
-            );
-          })}
+          ))}
       </div>
 
       <div className="text-neutral-700 dark:text-neutral-300 text-sm space-y-1">
@@ -72,7 +74,7 @@ export default function ContactSection() {
           </a>
         </p>
         <p className="text-xs text-neutral-500 my-4">
-          Based in {DATA.location}
+          Based in {data.location}
         </p>
       </div>
     </div>

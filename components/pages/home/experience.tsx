@@ -1,11 +1,15 @@
-import { DATA } from "@/data/resume";
+import type { ResumeData } from "@/lib/resume-data";
 import Image from "next/image";
 import Link from "next/link";
 import { IconMapPin } from "@tabler/icons-react";
 import WorkExperience from "@/components/work-experience";
 
-export function Experience() {
-  const data = DATA.work.map((work) => {
+interface ExperienceProps {
+  data: ResumeData;
+}
+
+export function Experience({ data }: ExperienceProps) {
+  const workData = data.work.map((work) => {
     const dateRange = `${work.start} - ${work.end}`;
 
     return {
@@ -67,7 +71,7 @@ export function Experience() {
           worked with.
         </p>
       </div>
-      <WorkExperience />
+      <WorkExperience data={data} />
       {/* <Timeline data={data} /> */}
     </div>
   );

@@ -1,8 +1,11 @@
-import { DATA } from "@/data/resume";
+import { getResumeData } from "@/lib/resume-data";
 import { ButtonConnect } from "@/components/shared/button-connect";
+import { Icon } from "@/components/ui/icon";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -10,7 +13,8 @@ export const metadata: Metadata = {
     "A curated collection of projects showcasing my work across products, DX tools, and experiments.",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const DATA = await getResumeData();
   const projects = DATA.projects;
 
   return (
@@ -122,9 +126,7 @@ export default function ProjectsPage() {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/70 bg-white/80 px-3 py-1 text-[11px] font-medium text-neutral-800 hover:border-primary/60 hover:text-primary dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-200"
                           >
-                            <span className="inline-flex items-center justify-center">
-                              {link.icon}
-                            </span>
+                            <Icon name={link.icon} className="w-3 h-3" />
                             <span>{link.type}</span>
                           </Link>
                         ))}
@@ -137,9 +139,7 @@ export default function ProjectsPage() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/80 bg-neutral-900 px-3 py-1 text-[11px] font-medium text-white hover:bg-primary hover:border-primary/70 dark:bg-white dark:text-neutral-900 dark:hover:bg-primary dark:hover:text-white"
                         >
-                          <span className="inline-flex items-center justify-center">
-                            {repoLink.icon}
-                          </span>
+                          <Icon name={repoLink.icon} className="w-3 h-3" />
                           <span>GitHub repo</span>
                         </Link>
                       )}

@@ -4,20 +4,25 @@ import { Hero } from "@/components/pages/home/hero";
 import { Testimonials } from "@/components/pages/home/testimonials";
 import { ProjectsPreview } from "@/components/pages/home/projects";
 import WorkExperience from "@/components/work-experience";
+import { getResumeData } from "@/lib/resume-data";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const data = await getResumeData();
+
   return (
     <div className="min-h-screen w-full">
       {/* Hero */}
-      <Hero />
+      <Hero data={data} />
       {/* Projects */}
-      <ProjectsPreview />
+      <ProjectsPreview data={data} />
       {/* Experience */}
-      <Experience />
+      <Experience data={data} />
       {/* Testimonials */}
-      <Testimonials />
+      <Testimonials data={data} />
       {/* Contact */}
-      <ContactSection />
+      <ContactSection data={data} />
     </div>
   );
 }

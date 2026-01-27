@@ -10,12 +10,16 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { DATA } from "@/data/resume";
+import type { ResumeData } from "@/lib/resume-data";
 import Link from "next/link";
 import { useState } from "react";
 import { ButtonConnect } from "./shared/button-connect";
 
-export function Navigation() {
+interface NavigationProps {
+  data: ResumeData;
+}
+
+export function Navigation({ data }: NavigationProps) {
   const navItems = [
     {
       name: "Projects",
@@ -46,7 +50,7 @@ export function Navigation() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <ButtonConnect className="w-full">
-              <Link href={DATA.nzmly} target="_blank">
+              <Link href={data.nzmly} target="_blank">
                 Book a call
               </Link>
             </ButtonConnect>
@@ -79,7 +83,7 @@ export function Navigation() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <ButtonConnect className="w-full">
-                <Link href={DATA.nzmly} target="_blank">
+                <Link href={data.nzmly} target="_blank">
                   Book a call
                 </Link>
               </ButtonConnect>

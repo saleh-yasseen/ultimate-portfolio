@@ -1,12 +1,20 @@
 "use client";
 import { FloatingDock } from "./ui/floating-dock";
-import { DATA } from "@/data/resume";
-import { TablerIcon } from "@tabler/icons-react";
+import type { ResumeData } from "@/lib/resume-data";
+import { mapIconsInArray } from "@/lib/icon-mapper";
+import type { TablerIcon } from "@tabler/icons-react";
 
-export function Dock() {
+interface DockProps {
+  data: ResumeData;
+}
+
+export function Dock({ data }: DockProps) {
+  // Map icon strings to components on the client side
+  const navbarWithIcons = mapIconsInArray(data.navbar);
+  
   return (
     <div className="fixed bottom-4 left-0 right-0 z-40">
-      <FloatingDock items={DATA.navbar as unknown as { title: string; icon: TablerIcon; href: string }[]} />
+      <FloatingDock items={navbarWithIcons as { title: string; icon: TablerIcon; href: string }[]} />
     </div>
   );
 }

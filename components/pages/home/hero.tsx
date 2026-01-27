@@ -1,13 +1,17 @@
 "use client";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
-import { DATA } from "@/data/resume";
+import type { ResumeData } from "@/lib/resume-data";
 import { motion, AnimatePresence } from "motion/react";
 import { IconMapPin } from "@tabler/icons-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-export function Hero() {
+interface HeroProps {
+  data: ResumeData;
+}
+
+export function Hero({ data }: HeroProps) {
   const typewriterLines = [
     [
       { text: "I'm", className: "text-neutral-600 dark:text-neutral-400" },
@@ -76,7 +80,7 @@ export function Hero() {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 dark:text-white"
           >
-            {DATA.name}
+            {data.name}
           </motion.h1>
 
           {/* Rotating Typewriter Effect */}
@@ -112,12 +116,12 @@ export function Hero() {
           >
             <IconMapPin className="w-4 h-4" />
             <Link
-              href={DATA.locationLink}
+              href={data.locationLink}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm sm:text-base hover:text-primary dark:hover:text-primary transition-colors"
             >
-              {DATA.location}
+              {data.location}
             </Link>
           </motion.div>
 
@@ -128,7 +132,7 @@ export function Hero() {
             transition={{ delay: 0.9, duration: 0.5 }}
             className="text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl leading-relaxed"
           >
-            {DATA.description}
+            {data.description}
           </motion.p>
 
           {/* Scroll Indicator */}
