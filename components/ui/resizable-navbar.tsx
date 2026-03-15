@@ -7,10 +7,10 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-import Image from "next/image";
 import Link from "next/link";
 
 import React, { useRef, useState } from "react";
+import { Logo } from "@/components/ui/logo";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -92,7 +92,6 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "40%" : "100%",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -100,12 +99,9 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         stiffness: 200,
         damping: 50,
       }}
-      style={{
-        minWidth: "800px",
-      }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent border border-transparent",
+        visible && "bg-white/80 dark:bg-neutral-950/80 border-white/10 dark:border-white/[0.05]",
         className
       )}
     >
@@ -121,7 +117,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+        "hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
         className
       )}
     >
@@ -149,17 +145,6 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
-      // animate={{
-      //   backdropFilter: visible ? "blur(10px)" : "none",
-      //   boxShadow: visible
-      //     ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-      //     : "none",
-      //   width: visible ? "90%" : "100%",
-      //   paddingRight: visible ? "12px" : "0px",
-      //   paddingLeft: visible ? "12px" : "0px",
-      //   borderRadius: visible ? "4px" : "2rem",
-      //   y: visible ? 20 : 0,
-      // }}
       transition={{
         type: "spring",
         stiffness: 200,
@@ -243,20 +228,9 @@ export const NavbarLogo = () => {
   return (
     <Link
       href="/"
-      className="relative z-20 mr-4 flex items-center text-sm font-normal text-black bg-transparent"
+      className="relative z-20 mr-4 flex flex-shrink-0 items-center text-sm font-normal text-black bg-transparent"
     >
-      <div className="flex h-6 w-6 items-center justify-center">
-        <Image
-          src={"/logo-bg.png"}
-          alt="logo"
-          width={120}
-          height={120}
-          className="h-full w-full object-contain"
-        />
-      </div>
-      <span className="ms-2 font-black text-black dark:text-white">
-        SWEverse
-      </span>
+      <Logo className="text-base" />
     </Link>
   );
 };

@@ -10,6 +10,7 @@ const staticRoutes: Array<{
   priority: MetadataRoute.Sitemap[number]["priority"];
 }> = [
   { path: "/", changeFrequency: "monthly", priority: 1 },
+  { path: "/projects", changeFrequency: "monthly", priority: 0.9 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
 ];

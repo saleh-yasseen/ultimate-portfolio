@@ -37,7 +37,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           <div key={index} className="flex justify-start pt-6 md:pt-10">
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
               <div className="h-10 absolute left-0 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
+                <div className="h-4 w-4 rounded-full bg-primary/80 border-2 border-primary/30 shadow-[0_0_8px_rgba(100,63,219,0.3)]" />
               </div>
               <h3 className="hidden md:block text-xl md:pl-20 md:text-2xl font-bold text-neutral-500 dark:text-neutral-500 ">
                 {item.title}
@@ -63,7 +63,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-linear-to-t from-primary via-primary to-transparent from-0% via-10% rounded-full"
+            className="absolute inset-x-0 top-0 w-[2px] bg-linear-to-t from-primary via-primary to-transparent from-0% via-10% rounded-full shadow-[0_0_8px_rgba(100,63,219,0.4)]"
           />
         </div>
       </div>

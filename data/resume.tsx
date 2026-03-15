@@ -16,10 +16,10 @@ export const DATA = {
   location: "Alexandria, Egypt",
   locationLink: "https://www.google.com/maps/place/Alexandria",
   description:
-    "Software Engineer & Mentor. I love building things and helping people. Very active on LinkedIn.",
+    "Frontend Engineer specializing in React & Next.js. I build polished web products and share what I learn along the way.",
   summary:
-    "I'm a software engineer with a passion for building things and helping people. I'm very active on LinkedIn.",
-  avatarUrl: "/me.jpeg",
+    "I'm a frontend engineer who loves turning ideas into real products. I work mainly with React, Next.js, and TypeScript — and I'm passionate about clean UI, great DX, and helping other developers grow.",
+  avatarUrl: "/me.png",
   skills: [
     "HTML",
     "CSS",

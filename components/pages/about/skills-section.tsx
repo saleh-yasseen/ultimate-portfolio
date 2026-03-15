@@ -23,7 +23,6 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
     })
   );
 
-  // Skills that don't match any category
   const categorizedSkillNames = Object.values(SKILL_CATEGORIES)
     .flat()
     .map((s) => s.toLowerCase());
@@ -59,7 +58,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                       duration: 0.3,
                       delay: groupIndex * 0.1 + skillIndex * 0.05,
                     }}
-                    className="rounded-full bg-neutral-100 dark:bg-neutral-900 px-3 py-1.5 text-sm text-neutral-700 dark:text-neutral-300 border border-neutral-200/70 dark:border-neutral-800"
+                    className="rounded-full bg-neutral-100/80 dark:bg-white/5 px-3 py-1.5 text-sm text-neutral-700 dark:text-neutral-300 border border-neutral-200/50 dark:border-white/10 transition-all hover:border-primary/40 hover:shadow-[0_0_12px_rgba(100,63,219,0.15)] hover:text-primary cursor-default"
                   >
                     {skill}
                   </motion.span>

@@ -4,6 +4,7 @@ import { CareerTimeline } from "@/components/pages/about/career-timeline";
 import { SkillsSection } from "@/components/pages/about/skills-section";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { ButtonConnect } from "@/components/shared/button-connect";
+import { IconDownload } from "@tabler/icons-react";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +12,12 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn more about my background, skills, career journey, and what drives me as a software engineer.",
+    "Frontend Engineer with expertise in React, Next.js, and TypeScript. Learn about my career journey, skills, and the products I've shipped.",
+  openGraph: {
+    title: "About Saif Mohamed — Frontend Engineer",
+    description:
+      "Frontend Engineer with expertise in React, Next.js, and TypeScript. Learn about my career journey, skills, and the products I've shipped.",
+  },
 };
 
 export default async function AboutPage() {
@@ -40,7 +46,7 @@ export default async function AboutPage() {
                 {data.education.map((edu) => (
                   <div
                     key={`${edu.school}-${edu.degree}`}
-                    className="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 p-6 backdrop-blur-sm"
+                    className="glass-card p-6"
                   >
                     <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
                       {edu.school}
@@ -61,9 +67,9 @@ export default async function AboutPage() {
         <SectionReveal delay={0.5}>
           <div className="mt-16 flex justify-center gap-4">
             <ButtonConnect
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/Saif_Mohamed_Frontend_Engineer.pdf"
+              download
+              icon={<IconDownload className="w-4 h-4" />}
             >
               Download Resume
             </ButtonConnect>

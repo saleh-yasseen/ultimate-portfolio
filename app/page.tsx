@@ -19,19 +19,18 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen w-full">
-      {/* Hero */}
       <Hero data={data} />
-      {/* Projects */}
+      <hr className="section-divider" />
       <ProjectsPreview data={data} />
-      {/* GitHub Activity */}
+      <hr className="section-divider" />
       <GitHubActivity repos={repos} />
-      {/* Experience */}
+      <hr className="section-divider" />
       <Experience data={data} />
-      {/* Testimonials */}
+      <hr className="section-divider" />
       <Testimonials data={data} />
-      {/* Blog Preview */}
+      <hr className="section-divider" />
       <BlogPreview posts={latestPosts} />
-      {/* Contact */}
+      <hr className="section-divider" />
       <ContactSection data={data} />
     </div>
   );

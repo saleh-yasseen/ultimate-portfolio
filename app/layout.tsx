@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter as FontSans, Space_Grotesk } from "next/font/google";
+import { Inter as FontSans, Fira_Code } from "next/font/google";
 import "./globals.css";
 import { getResumeData } from "@/lib/resume-data";
 import { cn } from "@/lib/utils";
-import { Dock } from "@/components/dock";
 import { Navigation } from "@/components/navbar";
 import { ThemeInit } from "@/components/theme-init";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
@@ -13,7 +12,7 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
-const fontHeading = Space_Grotesk({
+const fontHeading = Fira_Code({
   subsets: ["latin"],
   variable: "--font-heading",
 });
@@ -26,31 +25,49 @@ export async function generateMetadata(): Promise<Metadata> {
   const rawBaseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? DATA.url ?? "https://example.com";
   const canonicalBaseUrl = rawBaseUrl.replace(/\/$/, "");
-  const previewImagePath = "/me.png";
-  const previewImageUrl = new URL(previewImagePath, canonicalBaseUrl).toString();
+  const previewImageUrl = new URL("/me.png", canonicalBaseUrl).toString();
   const twitterHandle = "@saifmohamed_swe";
+
+  const siteTitle = `${DATA.name} — Frontend Engineer`;
+  const siteDescription =
+    "Frontend Engineer specializing in React, Next.js, and modern web development. Explore my projects, read technical articles, and get in touch.";
 
   return {
     metadataBase: new URL(canonicalBaseUrl),
-    applicationName: DATA.name,
+    applicationName: "SWEverse",
     title: {
-      default: DATA.name,
+      default: siteTitle,
       template: `%s | ${DATA.name}`,
     },
-    description: DATA.description,
+    description: siteDescription,
+    keywords: [
+      "Saif Mohamed",
+      "Frontend Engineer",
+      "React Developer",
+      "Next.js",
+      "TailwindCSS",
+      "Portfolio",
+      "Web Developer",
+      "Software Engineer",
+      "JavaScript",
+      "TypeScript",
+      "Alexandria Egypt",
+    ],
+    authors: [{ name: DATA.name, url: canonicalBaseUrl }],
+    creator: DATA.name,
     openGraph: {
-      title: `${DATA.name}`,
-      description: DATA.description,
+      title: siteTitle,
+      description: siteDescription,
       url: canonicalBaseUrl,
-      siteName: `${DATA.name}`,
-      locale: "en_EG",
+      siteName: "SWEverse",
+      locale: "en_US",
       type: "website",
       images: [
         {
           url: previewImageUrl,
           width: 1200,
           height: 630,
-          alt: `${DATA.name} personal site preview`,
+          alt: `${DATA.name} — Frontend Engineer portfolio`,
         },
       ],
     },
@@ -66,16 +83,18 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     twitter: {
-      title: `${DATA.name}`,
-      description: DATA.description,
+      title: siteTitle,
+      description: siteDescription,
       card: "summary_large_image",
       images: [previewImageUrl],
       creator: twitterHandle,
       site: twitterHandle,
     },
-    verification: {
-      google: "",
-      yandex: "",
+    alternates: {
+      canonical: canonicalBaseUrl,
+    },
+    other: {
+      "linkedin:profile": "https://linkedin.com/in/saifmohamedsv",
     },
   };
 }
@@ -114,7 +133,6 @@ export default async function RootLayout({
         <SmoothScrollProvider>
           <main id="main-content">{children}</main>
         </SmoothScrollProvider>
-        <Dock data={data} />
       </body>
     </html>
   );

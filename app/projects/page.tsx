@@ -11,7 +11,12 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "A curated collection of projects showcasing my work across products, DX tools, and experiments.",
+    "React and Next.js projects I've built and shipped — from production dashboards to developer tools and open-source experiments.",
+  openGraph: {
+    title: "Projects — Saif Mohamed",
+    description:
+      "React and Next.js projects I've built and shipped — from production dashboards to developer tools and open-source experiments.",
+  },
 };
 
 export default async function ProjectsPage() {
@@ -36,130 +41,129 @@ export default async function ProjectsPage() {
         </header>
 
         <SectionReveal>
-        <div className="mt-10 md:mt-12 grid gap-6 md:gap-8 lg:gap-10 md:grid-cols-2">
-          {projects.map((project) => {
-            const repoLink =
-              project.links?.find((link) =>
-                link.type.toLowerCase().includes("source")
-              ) ??
-              project.links?.find((link) =>
-                link.href.toLowerCase().includes("github.com")
-              );
+          <div className="mt-10 md:mt-12 grid gap-6 md:gap-8 lg:gap-10 md:grid-cols-2">
+            {projects.map((project) => {
+              const repoLink =
+                project.links?.find((link) =>
+                  link.type.toLowerCase().includes("source")
+                ) ??
+                project.links?.find((link) =>
+                  link.href.toLowerCase().includes("github.com")
+                );
 
-            return (
-              <article
-                key={project.title}
-                className="group relative flex flex-col overflow-hidden rounded-3xl border border-neutral-200/70 dark:border-neutral-800 bg-gradient-to-b from-white/95 via-white/90 to-neutral-50/90 dark:from-neutral-950 dark:via-neutral-950/95 dark:to-black/90 shadow-[0_24px_80px_rgba(15,23,42,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(15,23,42,0.3)]"
-              >
-                <div className="relative h-56 overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.25),transparent_60%)] pointer-events-none" />
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(min-width: 1024px) 540px, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
+              return (
+                <article
+                  key={project.title}
+                  className="group relative flex flex-col overflow-hidden rounded-2xl glass-card transition-all duration-300 hover:shadow-[0_0_30px_rgba(100,63,219,0.12)] hover:-translate-y-1"
+                >
+                  <div className="relative aspect-video overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      sizes="(min-width: 1024px) 540px, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
 
-                  <div className="absolute inset-x-4 top-4 flex items-center justify-between gap-2">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-black/70 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur">
-                      <span
-                        className={
-                          project.active
-                            ? "h-1.5 w-1.5 rounded-full bg-emerald-400"
-                            : "h-1.5 w-1.5 rounded-full bg-neutral-400"
-                        }
-                      />
-                      <span>{project.active ? "Live" : "Archived"}</span>
-                    </div>
-                    {project.dates && (
-                      <span className="rounded-full bg-white/80 px-3 py-1 text-[11px] font-medium text-neutral-900 shadow-sm dark:bg-neutral-900/90 dark:text-neutral-100">
-                        {project.dates}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex flex-1 flex-col gap-4 px-4 pb-4 pt-4 md:px-6 md:pb-6">
-                  <div className="flex flex-col gap-1.5">
-                    <div className="flex items-start justify-between gap-3">
-                      <h2 className="text-lg md:text-xl font-semibold text-neutral-900 dark:text-white">
-                        {project.title}
-                      </h2>
-                      {project.slug && project.caseStudy && (
-                        <Link
-                          href={`/projects/${project.slug}`}
-                          className="shrink-0 rounded-full border border-primary/60 bg-primary/10 px-3 py-1 text-[11px] font-medium text-primary hover:bg-primary/20"
-                        >
-                          Case study
-                        </Link>
-                      )}
-                      {project.href && (
-                        <Link
-                          href={project.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0 rounded-full border border-neutral-200/70 bg-white/80 px-3 py-1 text-[11px] font-medium text-neutral-800 hover:border-primary/60 hover:text-primary dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-200"
-                        >
-                          Live demo
-                        </Link>
-                      )}
-                    </div>
-                    {project.description && (
-                      <p className="text-sm text-neutral-700 dark:text-neutral-300">
-                        {project.description}
-                      </p>
-                    )}
-                  </div>
-
-                  {project.technologies?.length ? (
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.technologies.map((tech) => (
+                    <div className="absolute inset-x-4 top-4 flex items-center justify-between gap-2">
+                      <div className="inline-flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
                         <span
-                          key={tech}
-                          className="rounded-full bg-neutral-100 dark:bg-neutral-900 px-2.5 py-1 text-[11px] md:text-xs text-neutral-700 dark:text-neutral-300 border border-neutral-200/70 dark:border-neutral-800"
-                        >
-                          {tech}
+                          className={
+                            project.active
+                              ? "h-1.5 w-1.5 rounded-full bg-emerald-400"
+                              : "h-1.5 w-1.5 rounded-full bg-neutral-400"
+                          }
+                        />
+                        <span>{project.active ? "Live" : "Archived"}</span>
+                      </div>
+                      {project.dates && (
+                        <span className="rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-medium text-white/80 backdrop-blur-sm">
+                          {project.dates}
                         </span>
-                      ))}
+                      )}
                     </div>
-                  ) : null}
+                  </div>
 
-                  {project.links?.length ? (
-                    <div className="mt-2 flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm text-neutral-700 dark:text-neutral-300">
-                      <div className="flex flex-wrap gap-2">
-                        {project.links.map((link) => (
+                  <div className="flex flex-1 flex-col gap-4 px-4 pb-4 pt-4 md:px-6 md:pb-6">
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex items-start justify-between gap-3">
+                        <h2 className="text-lg md:text-xl font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h2>
+                        {project.slug && project.caseStudy && (
                           <Link
-                            key={`${project.title}-${link.type}`}
-                            href={link.href}
+                            href={`/projects/${project.slug}`}
+                            className="shrink-0 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] font-medium text-primary hover:bg-primary/20 transition-colors"
+                          >
+                            Case study
+                          </Link>
+                        )}
+                        {project.href && (
+                          <Link
+                            href={project.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/70 bg-white/80 px-3 py-1 text-[11px] font-medium text-neutral-800 hover:border-primary/60 hover:text-primary dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-200"
+                            className="shrink-0 rounded-full border border-neutral-200/50 dark:border-white/10 bg-white/60 dark:bg-white/5 px-3 py-1 text-[11px] font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary/40 hover:text-primary transition-colors"
                           >
-                            <Icon name={link.icon} className="w-3 h-3" />
-                            <span>{link.type}</span>
+                            Live demo
                           </Link>
-                        ))}
+                        )}
                       </div>
-
-                      {repoLink && (
-                        <Link
-                          href={repoLink.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/80 bg-neutral-900 px-3 py-1 text-[11px] font-medium text-white hover:bg-primary hover:border-primary/70 dark:bg-white dark:text-neutral-900 dark:hover:bg-primary dark:hover:text-white"
-                        >
-                          <Icon name={repoLink.icon} className="w-3 h-3" />
-                          <span>GitHub repo</span>
-                        </Link>
+                      {project.description && (
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                          {project.description}
+                        </p>
                       )}
                     </div>
-                  ) : null}
-                </div>
-              </article>
-            );
-          })}
-        </div>
+
+                    {project.technologies?.length ? (
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded-full bg-neutral-100/80 dark:bg-white/5 px-2 py-0.5 text-[10px] font-mono text-neutral-600 dark:text-neutral-400 border border-neutral-200/50 dark:border-white/10"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    {project.links?.length ? (
+                      <div className="mt-auto flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm text-neutral-700 dark:text-neutral-300">
+                        <div className="flex flex-wrap gap-2">
+                          {project.links.map((link) => (
+                            <Link
+                              key={`${project.title}-${link.type}`}
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/50 dark:border-white/10 bg-white/60 dark:bg-white/5 px-3 py-1 text-[11px] font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary/40 hover:text-primary transition-colors"
+                            >
+                              <Icon name={link.icon} className="w-3 h-3" />
+                              <span>{link.type}</span>
+                            </Link>
+                          ))}
+                        </div>
+
+                        {repoLink && (
+                          <Link
+                            href={repoLink.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/80 bg-neutral-900 px-3 py-1 text-[11px] font-medium text-white hover:bg-primary hover:border-primary/70 dark:bg-white dark:text-neutral-900 dark:hover:bg-primary dark:hover:text-white transition-colors"
+                          >
+                            <Icon name={repoLink.icon} className="w-3 h-3" />
+                            <span>GitHub repo</span>
+                          </Link>
+                        )}
+                      </div>
+                    ) : null}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </SectionReveal>
 
         <div className="mt-10 flex justify-center">

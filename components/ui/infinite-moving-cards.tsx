@@ -36,7 +36,6 @@ export const InfiniteMovingCards = ({
         }
       });
 
-      // Set animation direction
       if (direction === "left") {
         containerRef.current.style.setProperty(
           "--animation-direction",
@@ -49,7 +48,6 @@ export const InfiniteMovingCards = ({
         );
       }
 
-      // Set animation speed
       if (speed === "fast") {
         containerRef.current.style.setProperty("--animation-duration", "20s");
       } else if (speed === "normal") {
@@ -58,7 +56,6 @@ export const InfiniteMovingCards = ({
         containerRef.current.style.setProperty("--animation-duration", "80s");
       }
 
-      // Defer state update to avoid synchronous setState in effect
       requestAnimationFrame(() => {
         setStart(true);
       });
@@ -68,7 +65,7 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 w-full max-w-7xl mx-auto overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 w-full max-w-7xl mx-auto overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]",
         className
       )}
     >
@@ -82,23 +79,26 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[280px] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-[linear-gradient(180deg,#fafafa,#f5f5f5)] px-6 py-5 sm:w-[320px] sm:px-8 sm:py-6 md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
-            key={item.name}
+            className="relative w-[280px] max-w-full shrink-0 rounded-2xl border border-white/10 bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl px-6 py-5 sm:w-[320px] sm:px-8 sm:py-6 md:w-[450px] shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
+            key={`${item.name}-${idx}`}
           >
             <blockquote>
-              <div
+              {/* Decorative quote mark */}
+              <span
+                className="absolute top-4 right-6 text-5xl leading-none text-primary/10 font-serif select-none"
                 aria-hidden="true"
-                className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              <span className="relative z-20 text-sm leading-[1.6] font-normal text-neutral-800 dark:text-gray-100">
+              >
+                &ldquo;
+              </span>
+              <span className="relative z-20 text-sm leading-[1.7] font-normal text-neutral-700 dark:text-neutral-300">
                 {item.quote}
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <span className="text-sm leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
+                <span className="flex flex-col gap-0.5">
+                  <span className="text-sm font-medium text-neutral-900 dark:text-white">
                     {item.name}
                   </span>
-                  <span className="text-sm leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
+                  <span className="text-xs text-neutral-500 dark:text-neutral-400">
                     {item.title}
                   </span>
                 </span>

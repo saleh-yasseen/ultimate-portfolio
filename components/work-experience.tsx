@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import Image from "next/image";
 import type { ResumeData } from "@/lib/resume-data";
 import { IconCheck } from "@tabler/icons-react";
 
@@ -12,10 +11,7 @@ interface WorkExperienceProps {
 
 export default function WorkExperience({ data }: WorkExperienceProps) {
   const work = data.work;
-
-  // default: first job
   const [active, setActive] = useState<string>(work[0].company);
-
   const current = work.find((w) => w.company === active)!;
 
   return (
@@ -24,16 +20,7 @@ export default function WorkExperience({ data }: WorkExperienceProps) {
       <div
         role="tablist"
         aria-label="Work experience"
-        className={`
-          no-scrollbar
-    flex md:flex-col
-    space-x-2 md:space-x-0
-    space-y-0 md:space-y-2
-    overflow-x-auto md:overflow-visible
-    border-l-0 md:border-l border-primary/20
-    ps-0 md:ps-4
-    no-scrollbar
-  `}
+        className="no-scrollbar flex md:flex-col space-x-2 md:space-x-0 space-y-0 md:space-y-2 overflow-x-auto md:overflow-visible border-l-0 md:border-l border-primary/20 ps-0 md:ps-4"
       >
         {work.map((job) => {
           const isActive = job.company === active;
@@ -46,22 +33,24 @@ export default function WorkExperience({ data }: WorkExperienceProps) {
               aria-controls={`tabpanel-${job.company}`}
               onClick={() => setActive(job.company)}
               className={`
-        flex items-center gap-2 p-2 rounded-lg transition-all text-start
-        min-w-[100px] md:min-w-[130px]
-        ${
-          isActive
-            ? "bg-primary/90 text-white shadow-primary/10 shadow-lg"
-            : "hover:bg-primary/10 dark:hover:bg-primary/50"
-        }
-      `}
+                flex items-center gap-2 p-2 rounded-lg transition-all text-start
+                min-w-[100px] md:min-w-[130px]
+                ${
+                  isActive
+                    ? "bg-primary/90 text-white shadow-[0_0_20px_rgba(100,63,219,0.2)]"
+                    : "hover:bg-primary/10 dark:hover:bg-primary/20"
+                }
+              `}
             >
-              <Image
-                src={job.logoUrl}
-                alt={`${job.company} logo`}
-                width={20}
-                height={20}
-                className="rounded-full object-cover"
-              />
+              <div
+                className={`flex items-center justify-center w-6 h-6 rounded-full shrink-0 text-[10px] font-bold ${
+                  isActive
+                    ? "bg-white/20 text-white"
+                    : "bg-primary/10 text-primary dark:bg-primary/20"
+                }`}
+              >
+                {job.company.charAt(0).toUpperCase()}
+              </div>
 
               <span className="text-sm truncate max-w-[80px] block">
                 {job.company}
@@ -82,7 +71,7 @@ export default function WorkExperience({ data }: WorkExperienceProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.25 }}
-          className="space-y-2"
+          className="glass-card p-5 md:p-6 space-y-3"
         >
           {/* TITLE */}
           <h2 className="text-2xl font-semibold">
@@ -97,12 +86,12 @@ export default function WorkExperience({ data }: WorkExperienceProps) {
           </h2>
 
           {/* DATE */}
-          <p className="text-neutral-400">
+          <p className="text-neutral-400 text-sm">
             {current.start} – {current.end}
           </p>
 
           {/* LOCATION */}
-          <p className="text-neutral-400">{current.location}</p>
+          <p className="text-neutral-400 text-sm">{current.location}</p>
 
           {/* DESCRIPTION → AUTO BULLETS */}
           <ul className="mt-4 space-y-3">

@@ -7,7 +7,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Articles about web development, software engineering, and building products.",
+    "Technical articles on React, Next.js, frontend architecture, and lessons from building real products.",
+  openGraph: {
+    title: "Blog — Saif Mohamed",
+    description:
+      "Technical articles on React, Next.js, frontend architecture, and lessons from building real products.",
+  },
 };
 
 export default function BlogPage() {

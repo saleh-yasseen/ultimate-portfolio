@@ -25,6 +25,18 @@ export async function generateMetadata({
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
+    openGraph: {
+      title: `${post.frontmatter.title} — Saif Mohamed`,
+      description: post.frontmatter.description,
+      type: "article",
+      publishedTime: post.frontmatter.date,
+      authors: ["Saif Mohamed"],
+      tags: post.frontmatter.tags,
+    },
+    twitter: {
+      title: post.frontmatter.title,
+      description: post.frontmatter.description,
+    },
   };
 }
 
@@ -35,7 +47,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen w-full pt-8 pb-24">
-      <article className="container max-w-3xl">
+      <article className="container max-w-3xl lg:max-w-4xl">
         <header className="pt-10 md:pt-20 space-y-4">
           <div className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400">
             <time dateTime={post.frontmatter.date}>
@@ -46,10 +58,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               })}
             </time>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white font-heading">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white font-heading leading-[1.15]">
             {post.frontmatter.title}
           </h1>
-          <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400">
+          <p className="text-base md:text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed">
             {post.frontmatter.description}
           </p>
           <div className="flex flex-wrap gap-2">
