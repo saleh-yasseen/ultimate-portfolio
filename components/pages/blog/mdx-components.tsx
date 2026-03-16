@@ -7,19 +7,19 @@ import Link from "next/link";
 export const mdxComponents: MDXComponents = {
   h1: (props) => (
     <h1
-      className="mt-10 mb-4 text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white font-heading"
+      className="mt-10 mb-4 text-3xl md:text-4xl font-bold text-foreground"
       {...props}
     />
   ),
   h2: (props) => (
     <h2
-      className="mt-8 mb-3 text-2xl md:text-3xl font-semibold text-neutral-900 dark:text-white font-heading"
+      className="mt-8 mb-3 text-2xl md:text-3xl font-semibold text-foreground"
       {...props}
     />
   ),
   h3: (props) => (
     <h3
-      className="mt-6 mb-2 text-xl md:text-2xl font-semibold text-neutral-800 dark:text-neutral-100 font-heading"
+      className="mt-6 mb-2 text-xl md:text-2xl font-semibold text-foreground"
       {...props}
     />
   ),

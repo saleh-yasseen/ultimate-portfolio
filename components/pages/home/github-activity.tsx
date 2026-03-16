@@ -1,7 +1,6 @@
 "use client";
 
 import { SectionReveal } from "@/components/ui/section-reveal";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { motion } from "motion/react";
 import type { GitHubRepo } from "@/lib/types/github";
 import { IconStar, IconExternalLink } from "@tabler/icons-react";
@@ -26,13 +25,12 @@ export function GitHubActivity({ repos }: GitHubActivityProps) {
 
   return (
     <SectionReveal>
-      <section className="container w-full py-20 md:py-32 flex flex-col gap-10">
-        <div className="max-w-3xl space-y-3">
-          <TextGenerateEffect
-            words="Open Source & GitHub"
-            textClassName="font-heading text-2xl md:text-4xl font-semibold text-black dark:text-white"
-          />
-          <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300 max-w-xl">
+      <section className="container w-full px-6 py-24 md:py-40 flex flex-col gap-12">
+        <div className="space-y-3">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground font-heading">
+            Open Source & GitHub
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-lg">
             Recent repositories and open source contributions.
           </p>
         </div>
@@ -49,22 +47,22 @@ export function GitHubActivity({ repos }: GitHubActivityProps) {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               whileHover={{ y: -3 }}
-              className="group flex flex-col gap-3 rounded-xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 p-5 backdrop-blur-sm transition-shadow hover:shadow-lg"
+              className="group flex flex-col gap-3 glass-card soft-shadow p-5 transition-shadow hover:border-primary/30"
             >
               <div className="flex items-start justify-between gap-2">
-                <h3 className="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors truncate">
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                   {repo.name}
                 </h3>
-                <IconExternalLink className="w-4 h-4 shrink-0 text-neutral-400 group-hover:text-primary transition-colors" />
+                <IconExternalLink className="w-4 h-4 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
 
               {repo.description && (
-                <p className="line-clamp-2 text-xs text-neutral-600 dark:text-neutral-400">
+                <p className="line-clamp-2 text-xs text-muted-foreground">
                   {repo.description}
                 </p>
               )}
 
-              <div className="mt-auto flex items-center gap-3 text-xs text-neutral-500 dark:text-neutral-400">
+              <div className="mt-auto flex items-center gap-3 text-xs text-muted-foreground">
                 {repo.language && (
                   <span className="flex items-center gap-1">
                     <span

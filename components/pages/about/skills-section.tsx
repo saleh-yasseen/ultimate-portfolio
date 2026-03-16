@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
-
 const SKILL_CATEGORIES: Record<string, string[]> = {
   Frontend: ["HTML", "CSS", "React.js", "Next.js", "TailwindCSS", "Shadcn UI", "Magic UI"],
   Mobile: ["React Native", "Expo"],
@@ -36,32 +34,25 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
 
   return (
     <div className="mt-20">
-      <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white font-heading mb-8">
+      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground font-heading mb-8">
         Skills & Technologies
       </h2>
       <div className="grid gap-8 md:grid-cols-2">
         {categorized
           .filter((c) => c.skills.length > 0)
-          .map((group, groupIndex) => (
+          .map((group) => (
             <div key={group.category}>
-              <h3 className="text-sm font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">
+              <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground font-heading mb-3">
                 {group.category}
               </h3>
               <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill, skillIndex) => (
-                  <motion.span
+                {group.skills.map((skill) => (
+                  <span
                     key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.3,
-                      delay: groupIndex * 0.1 + skillIndex * 0.05,
-                    }}
-                    className="rounded-full bg-neutral-100/80 dark:bg-white/5 px-3 py-1.5 text-sm text-neutral-700 dark:text-neutral-300 border border-neutral-200/50 dark:border-white/10 transition-all hover:border-primary/40 hover:shadow-[0_0_12px_rgba(100,63,219,0.15)] hover:text-primary cursor-default"
+                    className="rounded-full glass-card px-3 py-1.5 text-sm text-muted-foreground hover:border-primary/30 transition-colors"
                   >
                     {skill}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
             </div>

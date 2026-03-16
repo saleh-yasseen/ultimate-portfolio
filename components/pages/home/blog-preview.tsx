@@ -1,7 +1,6 @@
 "use client";
 
 import { SectionReveal } from "@/components/ui/section-reveal";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { ButtonConnect } from "@/components/shared/button-connect";
 import { BlogCard } from "@/components/pages/blog/blog-card";
 import type { BlogPost } from "@/lib/types/blog";
@@ -15,19 +14,18 @@ export function BlogPreview({ posts }: BlogPreviewProps) {
 
   return (
     <SectionReveal>
-      <section className="container w-full py-20 md:py-32 flex flex-col gap-10">
-        <div className="max-w-3xl space-y-3">
-          <TextGenerateEffect
-            words="Latest Articles"
-            textClassName="font-heading text-2xl md:text-4xl font-semibold text-black dark:text-white"
-          />
-          <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300 max-w-xl">
-            Thoughts on web development, engineering practices, and lessons
-            learned from building products.
+      <section className="container w-full px-6 py-24 md:py-40 flex flex-col gap-12">
+        <div className="space-y-3">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground font-heading">
+            Latest Articles
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-lg">
+            Thoughts on web development and lessons learned from building
+            products.
           </p>
         </div>
 
-        <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => (
             <BlogCard
               key={post.slug}
@@ -38,8 +36,10 @@ export function BlogPreview({ posts }: BlogPreviewProps) {
           ))}
         </div>
 
-        <div className="mt-4 flex justify-center">
-          <ButtonConnect href="/blog">Read all articles</ButtonConnect>
+        <div className="flex justify-center">
+          <ButtonConnect href="/blog" variant="ghost">
+            Read all articles
+          </ButtonConnect>
         </div>
       </section>
     </SectionReveal>

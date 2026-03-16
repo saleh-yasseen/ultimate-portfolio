@@ -22,26 +22,11 @@ interface NavigationProps {
 
 export function Navigation({ data }: NavigationProps) {
   const navItems = [
-    {
-      name: "Projects",
-      link: "/#projects",
-    },
-    {
-      name: "Work Experience",
-      link: "/#experience",
-    },
-    {
-      name: "Blog",
-      link: "/blog",
-    },
-    {
-      name: "About",
-      link: "/about",
-    },
-    {
-      name: "Contact",
-      link: "/#contact",
-    },
+    { name: "Work", link: "/#projects" },
+    { name: "Experience", link: "/#experience" },
+    { name: "Blog", link: "/blog" },
+    { name: "About", link: "/about" },
+    { name: "Contact", link: "/#contact" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,8 +45,8 @@ export function Navigation({ data }: NavigationProps) {
           <NavItems items={navItems} />
           <div className="flex flex-shrink-0 items-center gap-2">
             {socialLinks.map((social) => {
-              const Icon = mapIcon(social.icon);
-              if (!Icon) return null;
+              const SocialIcon = mapIcon(social.icon);
+              if (!SocialIcon) return null;
               return (
                 <a
                   key={social.name}
@@ -69,16 +54,16 @@ export function Navigation({ data }: NavigationProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className="hidden xl:flex h-8 w-8 items-center justify-center rounded-full text-neutral-600 transition-colors hover:bg-gray-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+                  className="hidden xl:flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200"
                 >
-                  <Icon className="size-4" />
+                  <SocialIcon className="size-4" />
                 </a>
               );
             })}
             <button
               onClick={toggle}
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-              className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-600 transition-colors hover:bg-gray-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all duration-300"
             >
               {theme === "dark" ? (
                 <IconSun className="size-4" />
@@ -91,7 +76,7 @@ export function Navigation({ data }: NavigationProps) {
               target="_blank"
               rel="noopener noreferrer"
               icon={false}
-              className="px-4 py-2 rounded-lg text-xs"
+              className="px-4 py-2 text-xs"
             >
               Book a call
             </ButtonConnect>
@@ -106,7 +91,7 @@ export function Navigation({ data }: NavigationProps) {
               <button
                 onClick={toggle}
                 aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-                className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-600 transition-colors hover:bg-gray-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all duration-300"
               >
                 {theme === "dark" ? (
                   <IconSun className="size-4" />
@@ -134,7 +119,7 @@ export function Navigation({ data }: NavigationProps) {
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
+                className="relative text-muted-foreground hover:text-foreground transition-colors"
               >
                 <span className="block">{item.name}</span>
               </a>
@@ -150,10 +135,10 @@ export function Navigation({ data }: NavigationProps) {
                 Book a call
               </ButtonConnect>
             </div>
-            <div className="flex w-full items-center justify-center gap-3 pt-2 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="flex w-full items-center justify-center gap-3 pt-2 border-t border-border/40">
               {socialLinks.map((social) => {
-                const Icon = mapIcon(social.icon);
-                if (!Icon) return null;
+                const SocialIcon = mapIcon(social.icon);
+                if (!SocialIcon) return null;
                 return (
                   <a
                     key={social.name}
@@ -161,9 +146,9 @@ export function Navigation({ data }: NavigationProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
-                    className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-600 transition-colors hover:bg-gray-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+                    className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200"
                   >
-                    <Icon className="size-4" />
+                    <SocialIcon className="size-4" />
                   </a>
                 );
               })}

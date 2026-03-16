@@ -11,50 +11,49 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ slug, frontmatter, index }: BlogCardProps) {
-  // Estimate reading time from word count (rough: title + description length)
   const wordCount = (frontmatter.description || "").split(/\s+/).length;
   const readTime = Math.max(1, Math.ceil(wordCount / 40));
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.45, delay: index * 0.1 }}
-      className="group relative flex flex-col overflow-hidden rounded-2xl glass-card transition-all duration-300 hover:shadow-[0_0_30px_rgba(100,63,219,0.12)] hover:-translate-y-1"
+      transition={{ duration: 0.4, delay: index * 0.08 }}
     >
-      <Link href={`/blog/${slug}`} className="flex flex-1 flex-col">
-        <div className="flex flex-1 flex-col gap-3 px-5 py-5 md:px-6 md:py-6">
-          <div className="flex items-center gap-2 text-[11px] text-neutral-500 dark:text-neutral-400">
-            <time dateTime={frontmatter.date}>
-              {new Date(frontmatter.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-            <span className="text-neutral-300 dark:text-neutral-600">&middot;</span>
-            <span>{readTime} min read</span>
-          </div>
+      <Link
+        href={`/blog/${slug}`}
+        className="group flex flex-col gap-3 rounded-2xl glass-card soft-shadow p-5 transition-all hover:border-primary/30 hover:shadow-primary/5"
+      >
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <time dateTime={frontmatter.date}>
+            {new Date(frontmatter.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+          <span>&middot;</span>
+          <span>{readTime} min read</span>
+        </div>
 
-          <h3 className="text-base md:text-lg font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
-            {frontmatter.title}
-          </h3>
+        <h3 className="text-base font-medium text-foreground group-hover:text-primary transition-colors">
+          {frontmatter.title}
+        </h3>
 
-          <p className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
-            {frontmatter.description}
-          </p>
+        <p className="line-clamp-2 text-sm text-muted-foreground">
+          {frontmatter.description}
+        </p>
 
-          <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
-            {frontmatter.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-neutral-100/80 dark:bg-white/5 px-2.5 py-1 text-[10px] font-mono text-neutral-600 dark:text-neutral-400 border border-neutral-200/50 dark:border-white/10"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+          {frontmatter.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-mono text-primary"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       </Link>
     </motion.article>

@@ -47,9 +47,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen w-full pt-8 pb-24">
-      <article className="container max-w-3xl lg:max-w-4xl">
+      <article className="container max-w-3xl px-6">
         <header className="pt-10 md:pt-20 space-y-4">
-          <div className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400">
+          <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <time dateTime={post.frontmatter.date}>
               {new Date(post.frontmatter.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -58,23 +58,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               })}
             </time>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white font-heading leading-[1.15]">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-[1.15]">
             {post.frontmatter.title}
           </h1>
-          <p className="text-base md:text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             {post.frontmatter.description}
           </p>
           <div className="flex flex-wrap gap-2">
             {post.frontmatter.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-neutral-100 dark:bg-neutral-900 px-3 py-1 text-xs text-neutral-600 dark:text-neutral-400 border border-neutral-200/70 dark:border-neutral-800"
+                className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <hr className="border-neutral-200 dark:border-neutral-800" />
+          <hr className="border-border" />
         </header>
 
         <div className="mt-8 article-prose">
@@ -94,9 +94,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           />
         </div>
 
-        <div className="mt-16 flex justify-center gap-4">
-          <ButtonConnect href="/blog">All articles</ButtonConnect>
-          <ButtonConnect href="/">Back to home</ButtonConnect>
+        <div className="mt-16 flex justify-center gap-3">
+          <ButtonConnect href="/blog" variant="ghost">
+            All articles
+          </ButtonConnect>
+          <ButtonConnect href="/" variant="ghost">
+            Back to home
+          </ButtonConnect>
         </div>
       </article>
     </div>

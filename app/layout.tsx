@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter as FontSans, Fira_Code } from "next/font/google";
+import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 import { getResumeData } from "@/lib/resume-data";
 import { cn } from "@/lib/utils";
@@ -7,14 +7,14 @@ import { Navigation } from "@/components/navbar";
 import { ThemeInit } from "@/components/theme-init";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 
-const fontSans = FontSans({
+const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-const fontHeading = Fira_Code({
+const fontMono = Fira_Code({
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-mono",
 });
 
 export const dynamic = "force-dynamic";
@@ -117,9 +117,9 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased mx-auto px-6",
+          "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
-          fontHeading.variable
+          fontMono.variable
         )}
       >
         <a

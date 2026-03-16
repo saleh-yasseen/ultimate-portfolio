@@ -1,6 +1,5 @@
 import { getResumeData } from "@/lib/resume-data";
 import { AboutHero } from "@/components/pages/about/about-hero";
-import { CareerTimeline } from "@/components/pages/about/career-timeline";
 import { SkillsSection } from "@/components/pages/about/skills-section";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { ButtonConnect } from "@/components/shared/button-connect";
@@ -25,36 +24,32 @@ export default async function AboutPage() {
 
   return (
     <div className="min-h-screen w-full pt-8 pb-24">
-      <section className="container">
+      <section className="container px-6">
         <AboutHero data={data} />
 
         <SectionReveal delay={0.2}>
-          <CareerTimeline data={data} />
-        </SectionReveal>
-
-        <SectionReveal delay={0.3}>
           <SkillsSection skills={data.skills} />
         </SectionReveal>
 
         {data.education?.length > 0 && (
-          <SectionReveal delay={0.4}>
+          <SectionReveal delay={0.3}>
             <div className="mt-20">
-              <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white font-heading mb-8">
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground font-heading mb-8">
                 Education
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {data.education.map((edu) => (
                   <div
                     key={`${edu.school}-${edu.degree}`}
-                    className="glass-card p-6"
+                    className="rounded-2xl glass-card soft-shadow p-5"
                   >
-                    <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
+                    <h3 className="text-base font-medium text-foreground">
                       {edu.school}
                     </h3>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    <p className="text-sm text-muted-foreground">
                       {edu.degree}
                     </p>
-                    <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-500">
+                    <p className="mt-1 text-xs text-muted-foreground">
                       {edu.start} — {edu.end}
                     </p>
                   </div>
@@ -64,8 +59,8 @@ export default async function AboutPage() {
           </SectionReveal>
         )}
 
-        <SectionReveal delay={0.5}>
-          <div className="mt-16 flex justify-center gap-4">
+        <SectionReveal delay={0.4}>
+          <div className="mt-16 flex justify-center gap-3">
             <ButtonConnect
               href="/Saif_Mohamed_Frontend_Engineer.pdf"
               download
@@ -73,7 +68,9 @@ export default async function AboutPage() {
             >
               Download Resume
             </ButtonConnect>
-            <ButtonConnect href="/">Back to home</ButtonConnect>
+            <ButtonConnect href="/" variant="ghost">
+              Back to home
+            </ButtonConnect>
           </div>
         </SectionReveal>
       </section>

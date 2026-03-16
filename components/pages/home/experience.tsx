@@ -1,80 +1,86 @@
+"use client";
+
 import type { ResumeData } from "@/lib/resume-data";
-import Image from "next/image";
-import Link from "next/link";
-import { IconMapPin } from "@tabler/icons-react";
-import WorkExperience from "@/components/work-experience";
 import { SectionReveal } from "@/components/ui/section-reveal";
+import { motion } from "motion/react";
+import Image from "next/image";
 
 interface ExperienceProps {
   data: ResumeData;
 }
 
 export function Experience({ data }: ExperienceProps) {
-  const workData = data.work.map((work) => {
-    const dateRange = `${work.start} - ${work.end}`;
-
-    return {
-      title: dateRange,
-      content: (
-        <div key={work.title} className="w-full">
-          <div className="mb-2 flex items-start gap-2 md:gap-4">
-            {work.logoUrl && (
-              <Link
-                href={work.href || "#"}
-                target={work.href ? "_blank" : undefined}
-                rel={work.href ? "noopener noreferrer" : undefined}
-                className="shrink-0"
-              >
-                <Image
-                  src={work.logoUrl}
-                  alt={`${work.company} logo`}
-                  width={56}
-                  height={56}
-                  className="h-12 w-12 md:h-14 md:w-14 rounded-lg object-cover shadow-[0_0_24px_rgba(34,42,53,0.06),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset]"
-                />
-              </Link>
-            )}
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-col items-start gap-2">
-                <Link
-                  href={work.href || "#"}
-                  target={work.href ? "_blank" : undefined}
-                  rel={work.href ? "noopener noreferrer" : undefined}
-                  className="text-sm md:text-lg font-semibold text-neutral-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors"
-                >
-                  {work.company}
-                </Link>
-                <h4 className="text-xs md:text-base font-medium text-neutral-700 dark:text-neutral-300">
-                  {work.title}
-                </h4>
-                <div className="flex items-center gap-1.5 text-[11px] md:text-sm text-neutral-600 dark:text-neutral-400 mb-3 md:mb-4">
-                  <IconMapPin className="w-3 h-3 md:w-4 md:h-4 shrink-0" />
-                  <span>{work.location}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xs md:text-sm font-normal text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-xl">
-            {work.description}
-          </p>
-        </div>
-      ),
-    };
-  }); // LEGACY
   return (
     <SectionReveal>
-    <div id="experience" className="container relative w-full overflow-clip py-20 md:py-32">
-      <div className="py-4">
-        <h1 className="font-heading font-bold text-2xl md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-          Work Experience
-        </h1>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm max-w-sm">
-          A timeline of my professional journey and the companies I&apos;ve
-          worked with.
-        </p>
-      </div>
-      <WorkExperience data={data} />
-    </div>
+      <section
+        id="experience"
+        className="container w-full px-6 py-24 md:py-40"
+      >
+        <div className="space-y-3 mb-10">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground font-heading">
+            Experience
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-lg">
+            Companies I&apos;ve worked with and the roles I&apos;ve held.
+          </p>
+        </div>
+
+        <div className="grid gap-4">
+          {data.work.map((job, i) => (
+            <motion.div
+              key={`${job.company}-${job.start}`}
+              initial={{ opacity: 0, y: 16, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+                delay: i * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="glass-card soft-shadow p-5 md:p-6"
+            >
+              <div className="flex items-start gap-4">
+                {job.logoUrl && (
+                  <Image
+                    src={job.logoUrl}
+                    alt={`${job.company} logo`}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-xl object-cover ring-1 ring-border shrink-0"
+                  />
+                )}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
+                    <h3 className="text-base font-semibold text-foreground">
+                      {job.title}
+                    </h3>
+                    <span className="text-xs text-muted-foreground font-mono shrink-0">
+                      {job.start} — {job.end}
+                    </span>
+                  </div>
+                  {job.href ? (
+                    <a
+                      href={job.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:underline"
+                    >
+                      {job.company}
+                    </a>
+                  ) : (
+                    <span className="text-sm text-muted-foreground">
+                      {job.company}
+                    </span>
+                  )}
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    {job.description}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </SectionReveal>
   );
 }

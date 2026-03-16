@@ -25,7 +25,7 @@ const ArrowIcon = () => (
     viewBox="0 0 24 24"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
-    className="transition-transform duration-300 group-hover:translate-x-0.5"
+    className="transition-transform duration-200 group-hover:translate-x-0.5"
   >
     <path
       d="M10.75 8.75L14.25 12L10.75 15.25"
@@ -52,27 +52,26 @@ export function ButtonConnect({
   const isGhost = variant === "ghost";
 
   const baseClassName = cn(
-    "group relative inline-flex items-center justify-center gap-2.5 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 ease-out cursor-pointer select-none",
+    "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 cursor-pointer select-none overflow-hidden",
     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
     disabled && "opacity-50 cursor-not-allowed pointer-events-none",
     isGhost
-      ? "bg-transparent text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-white/[0.06]"
-      : "bg-primary text-white hover:brightness-110 hover:shadow-[0_4px_24px_rgba(100,63,219,0.3)] hover:-translate-y-px active:translate-y-0 active:shadow-[0_2px_8px_rgba(100,63,219,0.2)]",
+      ? "text-foreground border border-border/80 hover:border-primary/40 hover:bg-primary/5"
+      : "bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 btn-glow",
     className
   );
 
   const content = (
     <>
-      {/* Soft shimmer on hover */}
+      {/* Shimmer overlay for default variant */}
       {!isGhost && (
         <span
-          className="absolute inset-0 overflow-hidden rounded-xl"
+          className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
         >
-          <span className="absolute inset-0 rounded-xl bg-[linear-gradient(110deg,transparent_25%,rgba(255,255,255,0.15)_50%,transparent_75%)] bg-[length:250%_100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_ease-in-out]" />
+          <span className="absolute inset-0 bg-[linear-gradient(110deg,transparent_25%,rgba(255,255,255,0.15)_50%,transparent_75%)] bg-[length:250%_100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_ease-in-out]" />
         </span>
       )}
-
       <span className="relative flex items-center gap-2">
         <span>{children}</span>
         {icon && (
@@ -91,7 +90,8 @@ export function ButtonConnect({
           href={href}
           download
           className={baseClassName}
-          whileTap={{ scale: 0.97 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           {content}
         </motion.a>
@@ -110,7 +110,8 @@ export function ButtonConnect({
       onClick={onClick}
       disabled={disabled}
       type="button"
-      whileTap={{ scale: 0.97 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
     >
       {content}
     </motion.button>
