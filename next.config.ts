@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { hostname: "assets.aceternity.com", protocol: "https" },
       { hostname: "i.ibb.co", protocol: "https" },
+      { hostname: "cdn.hashnode.com", protocol: "https" },
     ],
   },
 };

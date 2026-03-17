@@ -3,10 +3,10 @@
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { ButtonConnect } from "@/components/shared/button-connect";
 import { BlogCard } from "@/components/pages/blog/blog-card";
-import type { BlogPost } from "@/lib/types/blog";
+import type { HashnodePost } from "@/lib/hashnode";
 
 interface BlogPreviewProps {
-  posts: BlogPost[];
+  posts: HashnodePost[];
 }
 
 export function BlogPreview({ posts }: BlogPreviewProps) {
@@ -27,12 +27,7 @@ export function BlogPreview({ posts }: BlogPreviewProps) {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => (
-            <BlogCard
-              key={post.slug}
-              slug={post.slug}
-              frontmatter={post.frontmatter}
-              index={index}
-            />
+            <BlogCard key={post.id} post={post} index={index} />
           ))}
         </div>
 

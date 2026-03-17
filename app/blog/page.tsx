@@ -1,8 +1,10 @@
-import { getBlogPosts } from "@/lib/blog";
+import { getHashnodePosts } from "@/lib/hashnode";
 import { BlogCard } from "@/components/pages/blog/blog-card";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { ButtonConnect } from "@/components/shared/button-connect";
 import type { Metadata } from "next";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -15,8 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  const posts = getBlogPosts();
+export default async function BlogPage() {
+  const posts = await getHashnodePosts();
 
   return (
     <div className="min-h-screen w-full pt-8 pb-24">
@@ -37,12 +39,7 @@ export default function BlogPage() {
         <SectionReveal>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, index) => (
-              <BlogCard
-                key={post.slug}
-                slug={post.slug}
-                frontmatter={post.frontmatter}
-                index={index}
-              />
+              <BlogCard key={post.id} post={post} index={index} />
             ))}
           </div>
         </SectionReveal>
