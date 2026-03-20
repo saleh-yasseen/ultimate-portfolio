@@ -21,8 +21,10 @@ const clientPromise: Promise<MongoClient> = globalForMongo._mongoClientPromise;
 export async function getResumeData() {
   const client = await clientPromise;
 
-  // Use logical names derived from the provided connection string path: /resume/data
-  const db = client.db("resume");
+  // Extract DB name from the connection string path (e.g. /resume → "resume")
+  // Falls back to "resume" if no path is specified
+  const dbName = new URL(uri).pathname.replace(/^\//, "") || "resume";
+  const db = client.db(dbName);
   const collection = db.collection("data");
 
   const docs = await collection.findOne({});
