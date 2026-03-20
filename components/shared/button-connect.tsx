@@ -52,7 +52,7 @@ export function ButtonConnect({
   const isGhost = variant === "ghost";
 
   const baseClassName = cn(
-    "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 cursor-pointer select-none overflow-hidden",
+    "group relative inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-all duration-300 cursor-pointer select-none overflow-hidden font-mono",
     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
     disabled && "opacity-50 cursor-not-allowed pointer-events-none",
     isGhost

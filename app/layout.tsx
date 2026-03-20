@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const twitterHandle = process.env.TWITTER_HANDLE || "";
   const linkedinUrl = process.env.LINKEDIN_URL || "";
 
-  const siteTitle = `${DATA.name} — Frontend Engineer`;
+  const siteTitle = `${DATA.name} — ${DATA.description.split(".")[0]}`;
   const siteDescription = DATA.description;
 
   return {
@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: previewImageUrl,
           width: 1200,
           height: 630,
-          alt: `${DATA.name} — Frontend Engineer portfolio`,
+          alt: `${DATA.name} — Portfolio`,
         },
       ],
     },

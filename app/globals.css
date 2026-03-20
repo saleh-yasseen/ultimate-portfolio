@@ -28,44 +28,44 @@
 }
 
 :root {
-  --radius: 1rem;
-  --background: #fafafa;
-  --foreground: #18181b;
+  --radius: 0.75rem;
+  --background: #f8fafb;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --card-foreground: #18181b;
-  --primary: #6366f1;
-  --primary-hover: #818cf8;
+  --card-foreground: #0f172a;
+  --primary: #0891b2;
+  --primary-hover: #06b6d4;
   --primary-foreground: #ffffff;
-  --secondary: #f0f0ff;
-  --secondary-foreground: #18181b;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --accent: #e0e7ff;
-  --accent-foreground: #18181b;
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #6366f1;
-  --glow: rgba(99, 102, 241, 0.12);
+  --secondary: #f0fdfa;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #e0f2fe;
+  --accent-foreground: #0f172a;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0891b2;
+  --glow: rgba(8, 145, 178, 0.1);
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #e4e4e7;
-  --card: #0f0f12;
-  --card-foreground: #e4e4e7;
-  --primary: #818cf8;
-  --primary-hover: #a5b4fc;
-  --primary-foreground: #09090b;
-  --secondary: #141418;
-  --secondary-foreground: #e4e4e7;
-  --muted: #18181b;
-  --muted-foreground: #a1a1aa;
-  --accent: #1e1b4b;
-  --accent-foreground: #e4e4e7;
-  --border: #27272a;
-  --input: #27272a;
-  --ring: #818cf8;
-  --glow: rgba(129, 140, 248, 0.15);
+  --background: #030712;
+  --foreground: #e2e8f0;
+  --card: #0a0f1a;
+  --card-foreground: #e2e8f0;
+  --primary: #22d3ee;
+  --primary-hover: #67e8f9;
+  --primary-foreground: #030712;
+  --secondary: #0c1322;
+  --secondary-foreground: #e2e8f0;
+  --muted: #111827;
+  --muted-foreground: #94a3b8;
+  --accent: #083344;
+  --accent-foreground: #e2e8f0;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #22d3ee;
+  --glow: rgba(34, 211, 238, 0.12);
 }
 
 @layer base {
@@ -74,6 +74,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .dark body {
+    background-image: radial-gradient(circle, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
   }
 }
 
@@ -111,10 +116,10 @@ html.lenis body {
 
 /* Glass card */
 .glass-card {
-  @apply rounded-2xl border border-border/60 bg-card/70 backdrop-blur-xl shadow-sm;
+  @apply rounded-xl border border-border/60 bg-card/80 backdrop-blur-xl shadow-sm;
 }
 .dark .glass-card {
-  @apply bg-[#0d0e0f]/80 border-white/[0.06];
+  @apply bg-[#0a0f1a]/80 border-white/[0.06];
 }
 
 /* Soft shadow */
@@ -127,14 +132,14 @@ html.lenis body {
 
 /* Card hover (dark mode) */
 .dark .glass-card:hover {
-  border-color: rgba(129, 140, 248, 0.15);
-  box-shadow: 0 0 20px rgba(129, 140, 248, 0.05), 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-color: rgba(34, 211, 238, 0.12);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.04), 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Gradient text */
 .gradient-text {
   @apply bg-clip-text text-transparent;
-  background-image: linear-gradient(135deg, var(--primary), #a78bfa, #6366f1);
+  background-image: linear-gradient(135deg, var(--primary), #67e8f9, #0891b2);
 }
 
 /* Icon glow on hover */
@@ -147,10 +152,10 @@ html.lenis body {
 
 /* Button glow (dark mode) */
 .dark .btn-glow {
-  box-shadow: 0 0 20px rgba(129, 140, 248, 0.2), 0 0 60px rgba(129, 140, 248, 0.08);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.15), 0 0 60px rgba(34, 211, 238, 0.06);
 }
 .dark .btn-glow:hover {
-  box-shadow: 0 0 30px rgba(129, 140, 248, 0.3), 0 0 80px rgba(129, 140, 248, 0.12);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.25), 0 0 80px rgba(34, 211, 238, 0.1);
 }
 
 /* Shimmer animation */
