@@ -14,17 +14,18 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const data = await getResumeData();
   const latestPosts = await getLatestHashnodePosts(3);
-  const repos = await getGitHubRepos("saifmohamedsv");
+  const repos = await getGitHubRepos(process.env.GITHUB_USERNAME || "");
+  const resumePath = process.env.RESUME_PDF_PATH || "/resume.pdf";
 
   return (
     <div className="min-h-screen w-full">
-      <Hero data={data} />
+      <Hero data={data} resumePath={resumePath} />
       <GitHubActivity repos={repos} />
       <ProjectsPreview data={data} />
       <Experience data={data} />
       <Testimonials data={data} />
       <BlogPreview posts={latestPosts} />
-      <ContactSection data={data} />
+      <ContactSection data={data} resumePath={resumePath} />
     </div>
   );
 }

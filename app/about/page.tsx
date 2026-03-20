@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "Frontend Engineer with expertise in React, Next.js, and TypeScript. Learn about my career journey, skills, and the products I've shipped.",
   openGraph: {
-    title: "About Saif Mohamed — Frontend Engineer",
+    title: "About — Frontend Engineer",
     description:
       "Frontend Engineer with expertise in React, Next.js, and TypeScript. Learn about my career journey, skills, and the products I've shipped.",
   },
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 
 export default async function AboutPage() {
   const data = await getResumeData();
+  const resumePath = process.env.RESUME_PDF_PATH || "/resume.pdf";
 
   return (
     <div className="min-h-screen w-full pt-8 pb-24">
@@ -62,7 +63,7 @@ export default async function AboutPage() {
         <SectionReveal delay={0.4}>
           <div className="mt-16 flex justify-center gap-3">
             <ButtonConnect
-              href="/Saif_Mohamed_Frontend_Engineer.pdf"
+              href={resumePath}
               download
               icon={<IconDownload className="w-4 h-4" />}
             >

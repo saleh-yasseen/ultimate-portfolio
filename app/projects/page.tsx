@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "React and Next.js projects I've built and shipped — from production dashboards to developer tools and open-source experiments.",
   openGraph: {
-    title: "Projects — Saif Mohamed",
+    title: "Projects",
     description:
       "React and Next.js projects I've built and shipped — from production dashboards to developer tools and open-source experiments.",
   },

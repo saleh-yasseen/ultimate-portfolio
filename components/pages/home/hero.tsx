@@ -10,9 +10,10 @@ import Image from "next/image";
 
 interface HeroProps {
   data: ResumeData;
+  resumePath: string;
 }
 
-export function Hero({ data }: HeroProps) {
+export function Hero({ data, resumePath }: HeroProps) {
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[85vh] px-6 py-24 overflow-hidden">
       <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto space-y-6">
@@ -80,7 +81,7 @@ export function Hero({ data }: HeroProps) {
           className="flex flex-wrap items-center justify-center gap-3 pt-2"
         >
           <ButtonConnect
-            href="/Saif_Mohamed_Frontend_Engineer.pdf"
+            href={resumePath}
             download
             icon={<IconDownload className="w-4 h-4" />}
           >

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getResumeData } from "@/lib/resume-data";
-import { getBlogPosts } from "@/lib/blog";
+import { getHashnodePosts } from "@/lib/hashnode";
 
 export const dynamic = "force-dynamic";
 
@@ -59,11 +59,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7 as const,
     }));
 
-  // Blog post pages
-  const blogPosts = getBlogPosts();
-  const blogPages = blogPosts.map((post) => ({
+  // Blog post pages from Hashnode
+  const hashnodePosts = await getHashnodePosts();
+  const blogPages = hashnodePosts.map((post) => ({
     url: new URL(`/blog/${post.slug}`, canonicalBaseUrl).toString(),
-    lastModified: new Date(post.frontmatter.date),
+    lastModified: new Date(post.publishedAt),
     changeFrequency: "monthly" as const,
     priority: 0.6 as const,
   }));

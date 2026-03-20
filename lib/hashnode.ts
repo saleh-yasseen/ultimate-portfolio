@@ -1,5 +1,5 @@
 const HASHNODE_GQL = "https://gql.hashnode.com";
-const PUBLICATION_HOST = "saifmohamedsv.hashnode.dev";
+const PUBLICATION_HOST = process.env.HASHNODE_HOST || "";
 
 export interface HashnodeTag {
   name: string;
@@ -68,6 +68,8 @@ const POST_FIELDS = `
 `;
 
 export async function getHashnodePosts(first = 20): Promise<HashnodePost[]> {
+  if (!PUBLICATION_HOST) return [];
+
   const data = await gql<HashnodeResponse>(`
     query GetPosts($host: String!, $first: Int!) {
       publication(host: $host) {
@@ -88,6 +90,8 @@ export async function getHashnodePosts(first = 20): Promise<HashnodePost[]> {
 }
 
 export async function getHashnodePost(slug: string): Promise<HashnodePost | null> {
+  if (!PUBLICATION_HOST) return null;
+
   const data = await gql<HashnodeSingleResponse>(`
     query GetPost($host: String!, $slug: String!) {
       publication(host: $host) {

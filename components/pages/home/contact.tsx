@@ -10,9 +10,10 @@ import { useState } from "react";
 
 interface ContactSectionProps {
   data: ResumeData;
+  resumePath: string;
 }
 
-export default function ContactSection({ data }: ContactSectionProps) {
+export default function ContactSection({ data, resumePath }: ContactSectionProps) {
   const contact = data.contact;
   const [copied, setCopied] = useState(false);
 
@@ -68,7 +69,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
           {/* CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-3">
             <ButtonConnect
-              href="/Saif_Mohamed_Frontend_Engineer.pdf"
+              href={resumePath}
               download
               icon={<IconDownload className="w-4 h-4" />}
             >

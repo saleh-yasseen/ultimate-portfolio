@@ -26,22 +26,24 @@ export async function generateMetadata(): Promise<Metadata> {
     process.env.NEXT_PUBLIC_SITE_URL ?? DATA.url ?? "https://example.com";
   const canonicalBaseUrl = rawBaseUrl.replace(/\/$/, "");
   const previewImageUrl = new URL("/me.png", canonicalBaseUrl).toString();
-  const twitterHandle = "@saifmohamed_swe";
+
+  const siteName = process.env.SITE_NAME || DATA.name;
+  const twitterHandle = process.env.TWITTER_HANDLE || "";
+  const linkedinUrl = process.env.LINKEDIN_URL || "";
 
   const siteTitle = `${DATA.name} — Frontend Engineer`;
-  const siteDescription =
-    "Frontend Engineer specializing in React, Next.js, and modern web development. Explore my projects, read technical articles, and get in touch.";
+  const siteDescription = DATA.description;
 
   return {
     metadataBase: new URL(canonicalBaseUrl),
-    applicationName: "SWEverse",
+    applicationName: siteName,
     title: {
       default: siteTitle,
       template: `%s | ${DATA.name}`,
     },
     description: siteDescription,
     keywords: [
-      "Saif Mohamed",
+      DATA.name,
       "Frontend Engineer",
       "React Developer",
       "Next.js",
@@ -51,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "Software Engineer",
       "JavaScript",
       "TypeScript",
-      "Alexandria Egypt",
+      DATA.location,
     ],
     authors: [{ name: DATA.name, url: canonicalBaseUrl }],
     creator: DATA.name,
@@ -59,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: siteTitle,
       description: siteDescription,
       url: canonicalBaseUrl,
-      siteName: "SWEverse",
+      siteName,
       locale: "en_US",
       type: "website",
       images: [
@@ -87,15 +89,14 @@ export async function generateMetadata(): Promise<Metadata> {
       description: siteDescription,
       card: "summary_large_image",
       images: [previewImageUrl],
-      creator: twitterHandle,
-      site: twitterHandle,
+      ...(twitterHandle && { creator: twitterHandle, site: twitterHandle }),
     },
     alternates: {
       canonical: canonicalBaseUrl,
     },
-    other: {
-      "linkedin:profile": "https://linkedin.com/in/saifmohamedsv",
-    },
+    ...(linkedinUrl && {
+      other: { "linkedin:profile": linkedinUrl },
+    }),
   };
 }
 

@@ -1,4 +1,5 @@
 import { getHashnodePost, getHashnodePosts } from "@/lib/hashnode";
+import { getResumeData } from "@/lib/resume-data";
 import { ButtonConnect } from "@/components/shared/button-connect";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -24,6 +25,7 @@ export async function generateMetadata({
   const post = await getHashnodePost(slug);
   if (!post) return { title: "Post Not Found" };
 
+  const DATA = await getResumeData();
   const title = post.seo?.title || post.title;
   const description = post.seo?.description || post.brief;
   const image = post.ogMetaData?.image || post.coverImage?.url;
@@ -32,11 +34,11 @@ export async function generateMetadata({
     title,
     description,
     openGraph: {
-      title: `${title} — Saif Mohamed`,
+      title: `${title} — ${DATA.name}`,
       description,
       type: "article",
       publishedTime: post.publishedAt,
-      authors: ["Saif Mohamed"],
+      authors: [DATA.name],
       tags: post.tags.map((t) => t.name),
       ...(image && { images: [{ url: image, width: 1200, height: 630 }] }),
     },
@@ -51,7 +53,10 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = await getHashnodePost(slug);
+  const [post, DATA] = await Promise.all([
+    getHashnodePost(slug),
+    getResumeData(),
+  ]);
   if (!post) notFound();
 
   const date = new Date(post.publishedAt).toLocaleDateString("en-US", {
@@ -106,12 +111,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="flex items-center gap-1.5">
               <Image
                 src="/me.png"
-                alt="Saif Mohamed"
+                alt={DATA.name}
                 width={24}
                 height={24}
                 className="rounded-full"
               />
-              <span className="font-medium text-foreground">Saif Mohamed</span>
+              <span className="font-medium text-foreground">{DATA.name}</span>
             </div>
             <div className="flex items-center gap-1">
               <IconCalendar className="w-3.5 h-3.5" />
