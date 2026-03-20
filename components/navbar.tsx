@@ -18,10 +18,10 @@ import { mapIcon } from "@/lib/icon-mapper";
 
 interface NavigationProps {
   data: ResumeData;
-  siteName: string;
+  logoText: string;
 }
 
-export function Navigation({ data, siteName }: NavigationProps) {
+export function Navigation({ data, logoText }: NavigationProps) {
   const navItems = [
     { name: "Work", link: "/#projects" },
     { name: "Experience", link: "/#experience" },
@@ -42,7 +42,7 @@ export function Navigation({ data, siteName }: NavigationProps) {
       <Navbar className="fixed top-0 md:top-2 z-99">
         {/* Desktop Navigation */}
         <NavBody>
-          <NavbarLogo initials={data.initials} siteName={siteName} />
+          <NavbarLogo logoText={logoText} />
           <NavItems items={navItems} />
           <div className="flex flex-shrink-0 items-center gap-2">
             {socialLinks.map((social) => {
@@ -87,7 +87,7 @@ export function Navigation({ data, siteName }: NavigationProps) {
         {/* Mobile Navigation */}
         <MobileNav>
           <MobileNavHeader>
-            <NavbarLogo initials={data.initials} siteName={siteName} />
+            <NavbarLogo logoText={logoText} />
             <div className="flex items-center gap-1">
               <button
                 onClick={toggle}

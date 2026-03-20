@@ -1,26 +1,51 @@
 interface LogoProps {
   className?: string;
-  initials?: string;
-  siteName?: string;
+  logoText?: string;
 }
 
-export function Logo({ className, initials = "SW", siteName }: LogoProps) {
-  // Split siteName to highlight the second word in primary color
-  // e.g. "SWEverse" → "SWE" + "verse", "Saleh Yassin" → "Saleh" + "Yassin"
-  const parts = siteName
-    ? siteName.includes(" ")
-      ? siteName.split(" ")
-      : [siteName.slice(0, Math.ceil(siteName.length / 2)), siteName.slice(Math.ceil(siteName.length / 2))]
-    : ["SWE", "verse"];
+export function Logo({ className, logoText }: LogoProps) {
+  const text = logoText || "Portfolio";
+  // Split to highlight second part in primary color
+  const parts = text.includes(" ")
+    ? text.split(" ")
+    : [text.slice(0, Math.ceil(text.length / 2)), text.slice(Math.ceil(text.length / 2))];
 
   return (
     <span
       className={`inline-flex items-center gap-1.5 ${className ?? ""}`}
-      aria-label={`${siteName || "Portfolio"} logo`}
+      aria-label={`${text} logo`}
     >
-      {/* Initials badge */}
-      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10 dark:bg-primary/15 ring-1 ring-primary/20 text-xs font-bold font-mono text-primary">
-        {initials.slice(0, 2).toUpperCase()}
+      {/* Icon mark — terminal cursor in a rounded square */}
+      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10 dark:bg-primary/15 ring-1 ring-primary/20">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="text-primary"
+        >
+          <path
+            d="M7 8L3 12L7 16"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M17 8L21 12L17 16"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M14 4L10 20"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            opacity="0.5"
+          />
+        </svg>
       </span>
 
       {/* Wordmark */}
