@@ -111,7 +111,7 @@ Each card displays:
 
 Card styling matches GitHub cards: `glass-card soft-shadow`, motion animations with staggered reveal, hover lift effect.
 
-Icons: Use `IconBrandKaggle` from `@tabler/icons-react` for Kaggle items. For Hugging Face, use an inline SVG based on the official HF logo mark. Tags are only rendered for HF items (Kaggle items have no tags).
+Icons: Neither `@tabler/icons-react` nor the installed icon library includes Kaggle or Hugging Face brand icons. Use inline SVG components for both platform logos. Tags are only rendered for HF items (Kaggle items have no tags).
 
 ### Home Page Integration
 
