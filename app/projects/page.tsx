@@ -41,76 +41,90 @@ export default async function ProjectsPage() {
 
         <SectionReveal>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className="group flex flex-col overflow-hidden rounded-3xl glass-card soft-shadow"
-              >
-                <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(min-width: 1024px) 540px, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  />
-                  {project.active && (
-                    <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
-                      <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
-                      Live
+            {projects.map((project) => {
+              const hasImage = !!project.image;
+
+              return (
+                <article
+                  key={project.title}
+                  className="group flex flex-col overflow-hidden rounded-3xl glass-card soft-shadow"
+                >
+                  {hasImage && (
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(min-width: 1024px) 540px, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      />
+                      {project.active && (
+                        <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
+                          <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                          Live
+                        </div>
+                      )}
                     </div>
                   )}
-                </div>
 
-                <div className="flex flex-1 flex-col gap-3 p-5">
-                  <div className="flex items-start justify-between gap-2">
-                    <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h2>
-                    {project.slug && project.caseStudy && (
-                      <Link
-                        href={`/projects/${project.slug}`}
-                        className="shrink-0 text-xs text-primary hover:underline"
-                      >
-                        Case study
-                      </Link>
-                    )}
-                  </div>
-
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-mono text-primary"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {project.links?.length > 0 && (
-                    <div className="mt-auto flex flex-wrap gap-3 pt-2">
-                      {project.links.map((link) => (
+                  <div className="flex flex-1 flex-col gap-3 p-5">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h2>
+                        {!hasImage && project.active && (
+                          <span className="flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+                            <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                            Live
+                          </span>
+                        )}
+                      </div>
+                      {project.slug && project.caseStudy && (
                         <Link
-                          key={`${project.title}-${link.type}`}
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                          href={`/projects/${project.slug}`}
+                          className="shrink-0 text-xs text-primary hover:underline"
                         >
-                          <Icon name={link.icon} className="w-3.5 h-3.5" />
-                          <span>{link.type}</span>
+                          Case study
                         </Link>
+                      )}
+                    </div>
+
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-mono text-primary"
+                        >
+                          {tech}
+                        </span>
                       ))}
                     </div>
-                  )}
-                </div>
-              </article>
-            ))}
+
+                    {project.links?.length > 0 && (
+                      <div className="mt-auto flex flex-wrap gap-3 pt-2">
+                        {project.links.map((link) => (
+                          <Link
+                            key={`${project.title}-${link.type}`}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                          >
+                            <Icon name={link.icon} className="w-3.5 h-3.5" />
+                            <span>{link.type}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </SectionReveal>
 

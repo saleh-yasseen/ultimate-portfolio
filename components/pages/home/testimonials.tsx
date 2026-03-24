@@ -9,6 +9,8 @@ interface TestimonialsProps {
 }
 
 export function Testimonials({ data }: TestimonialsProps) {
+  if (!data.testimonials || data.testimonials.length === 0) return null;
+
   return (
     <SectionReveal>
       <section className="container w-full px-6 py-24 md:py-40">
