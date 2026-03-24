@@ -27,7 +27,7 @@ export function Hero({ data, resumePath }: HeroProps) {
               className="inline-flex items-center gap-2 rounded-md bg-primary/10 border border-primary/20 px-3 py-1.5 text-sm font-mono text-primary"
             >
               <IconTerminal2 className="w-3.5 h-3.5" />
-              <span className="opacity-60">$</span> {data.work?.[0]?.title || "Software Engineer"}
+              <span className="opacity-60">$</span> whoami{" "}
             </motion.div>
 
             {/* Name */}
@@ -103,9 +103,9 @@ export function Hero({ data, resumePath }: HeroProps) {
             <Image
               src="/me.png"
               alt={data.name}
-              width={200}
-              height={200}
-              className="rounded-2xl ring-1 ring-border"
+              width={320}
+              height={320}
+              className="w-48 h-48 md:w-72 md:h-72 rounded-2xl ring-1 ring-border object-cover"
               priority
             />
           </motion.div>
