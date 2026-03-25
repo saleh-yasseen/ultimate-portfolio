@@ -81,25 +81,15 @@ interface RawResumeData {
 }
 
 /**
- * Fetches resume data from the MongoDB API
+ * Fetches resume data directly from MongoDB
  * Icons are kept as strings for serialization to client components
  * Use mapIcon() on the client side to convert strings to components
  */
 export const getResumeData = cache(async () => {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const { getResumeData: getFromMongo } = await import("./mongodb");
 
   try {
-    const res = await fetch(`${baseUrl}/api/resume`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch resume data: ${res.statusText}`);
-    }
-
-    const rawData: RawResumeData = await res.json();
-
-    // Return data as-is without mapping icons (icons stay as strings)
+    const rawData = (await getFromMongo()) as unknown as RawResumeData;
     return rawData;
   } catch (error) {
     console.error("Error fetching resume data:", error);
